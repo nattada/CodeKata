@@ -3,6 +3,7 @@ WordSearch/bin
 WordSearch/build
 WordSearch/.settings
 WordSearch/.project
+WordSearch/.DS_Store
 .DS_Store
 .metadata/
 .recommenders/
