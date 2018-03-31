@@ -1,0 +1,9 @@
+WordSearch/.classpath
+WordSearch/bin
+WordSearch/build
+WordSearch/.settings
+WordSearch/.project
+.DS_Store
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles
