@@ -30,4 +30,11 @@ public class SolvePuzzleTest {
 		assertEquals("UHURA", solve.getWordsNeededSearch().get(6).getWord());
 
 	}
+	@Test
+	public void whenSolvePuzzleFoundInputFileAndReadFirstRowForListOfWordsThenCheckNumberOfWords() {
+		SolvePuzzle solve  = new SolvePuzzle("puzzleOne.csv");
+		solve.search();
+		assertEquals(7, solve.getWordsNeededSearch().size());
+
+	}
 }
