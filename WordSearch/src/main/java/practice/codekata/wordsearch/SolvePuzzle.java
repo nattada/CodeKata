@@ -11,6 +11,7 @@ import java.util.List;
 public class SolvePuzzle {
 	private String inputFile;
 	private List<Words> wordsNeededSearch;
+	private Grid gridPuzzle;
 
 	public SolvePuzzle(String inputFile) {
 		this.inputFile = inputFile;
@@ -24,11 +25,16 @@ public class SolvePuzzle {
 			}
 			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 			wordsNeededSearch = getListOfWords(br);
+			gridPuzzle = buildGrid(br);
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return "Success";// continue with the search
+	}
+
+	private Grid buildGrid(BufferedReader br) {
+		return new Grid(15);
 	}
 
 	private List<Words> getListOfWords(BufferedReader br) {
@@ -50,4 +56,9 @@ public class SolvePuzzle {
 	public List<Words> getWordsNeededSearch() {
 		return wordsNeededSearch;
 	}
+	
+	public Grid getGridPuzzle(){
+		return gridPuzzle;
+	}
+	
 }

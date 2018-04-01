@@ -37,4 +37,12 @@ public class SolvePuzzleTest {
 		assertEquals(7, solve.getWordsNeededSearch().size());
 
 	}
+	
+	@Test
+	public void whenSolvePuzzleReadAFileToBuildAGridItReturnsCorrectNumberOfRowsAndColumns() {
+		solve.search();
+		assertEquals(15, solve.getGridPuzzle().getNumColumn());
+		assertEquals(15, solve.getGridPuzzle().getNumRow());
+
+	}
 }
