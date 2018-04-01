@@ -1,16 +1,16 @@
 package practice.codekata.wordsearch;
 
 public class Grid {
-	int numRow;
-	int numColumn;
-	public Grid(int size) {
+	long numRow;
+	long numColumn;
+	public Grid(long size) {
 		this.numColumn = size;
 		this.numRow = size;
 	}
-	public int getNumRow() {
+	public long getNumRow() {
 		return numRow;
 	}
-	public int getNumColumn() {
+	public long getNumColumn() {
 		return numColumn;
 	}
 

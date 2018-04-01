@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class SolvePuzzle {
 	private String inputFile;
@@ -24,8 +25,8 @@ public class SolvePuzzle {
 				return "Fail";
 			}
 			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-			wordsNeededSearch = getListOfWords(br);
-			gridPuzzle = buildGrid(br);
+			wordsNeededSearch = getListOfWords(br.readLine());
+			gridPuzzle = buildGrid(br.lines());
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -33,22 +34,19 @@ public class SolvePuzzle {
 		return "Success";// continue with the search
 	}
 
-	private Grid buildGrid(BufferedReader br) {
-		return new Grid(15);
+	private Grid buildGrid(Stream<String> lines) {
+		return new Grid(lines.count());
 	}
 
-	private List<Words> getListOfWords(BufferedReader br) {
+	private List<Words> getListOfWords(String line) {
 		List<Words> wordsList = new ArrayList<Words>();
-		try {
-			String[] firstLine = br.readLine().split(",");
-			for(String word:firstLine) {
-				Words w = new Words();
-				w.setFound(false);
-				w.setWord(word);
-				wordsList.add(w);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		String[] firstLine = line.split(",");
+		for (String word : firstLine) {
+			Words w = new Words();
+			w.setFound(false);
+			w.setWord(word);
+			wordsList.add(w);
 		}
 		return wordsList;
 	}
@@ -56,9 +54,9 @@ public class SolvePuzzle {
 	public List<Words> getWordsNeededSearch() {
 		return wordsNeededSearch;
 	}
-	
-	public Grid getGridPuzzle(){
+
+	public Grid getGridPuzzle() {
 		return gridPuzzle;
 	}
-	
+
 }
