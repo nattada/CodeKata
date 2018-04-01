@@ -22,5 +22,12 @@ public class SolvePuzzleTest {
 		SolvePuzzle solve  = new SolvePuzzle("puzzleOne.csv");
 		solve.search();
 		assertEquals("BONES", solve.getWordsNeededSearch().get(0).getWord());
+		assertEquals("KHAN", solve.getWordsNeededSearch().get(1).getWord());
+		assertEquals("KIRK", solve.getWordsNeededSearch().get(2).getWord());
+		assertEquals("SCOTTY", solve.getWordsNeededSearch().get(3).getWord());
+		assertEquals("SPOCK", solve.getWordsNeededSearch().get(4).getWord());
+		assertEquals("SULU", solve.getWordsNeededSearch().get(5).getWord());
+		assertEquals("UHURA", solve.getWordsNeededSearch().get(6).getWord());
+
 	}
 }

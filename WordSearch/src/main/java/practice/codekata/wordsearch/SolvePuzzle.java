@@ -33,10 +33,17 @@ public class SolvePuzzle {
 
 	private List<Words> getListOfWords(BufferedReader br) {
 		List<Words> wordsList = new ArrayList<Words>();
-		Words w = new Words();
-		w.setFound(false);
-		w.setWord("BONES");
-		wordsList.add(w);
+		try {
+			String[] firstLine = br.readLine().split(",");
+			for(String word:firstLine) {
+				Words w = new Words();
+				w.setFound(false);
+				w.setWord(word);
+				wordsList.add(w);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return wordsList;
 	}
 
