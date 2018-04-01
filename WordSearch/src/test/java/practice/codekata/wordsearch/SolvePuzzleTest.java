@@ -1,15 +1,17 @@
 package practice.codekata.wordsearch;
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.junit.Before;
 import org.junit.Test;
 
 public class SolvePuzzleTest {
+	public SolvePuzzle solve;
+	@Before
+	public void setUp() {
+		 solve  = new SolvePuzzle("puzzleOne.csv");
+	}
 	@Test
 	public void whenSolvePuzzlePassedAFileIsFound() {
-		SolvePuzzle solve =  new SolvePuzzle("puzzleOne.csv");
 		assertEquals("Success", solve.search());
 	}
 	@Test
@@ -19,7 +21,6 @@ public class SolvePuzzleTest {
 	}
 	@Test
 	public void whenSolvePuzzleFoundInputFileReadFirstRowForListOfWords() {
-		SolvePuzzle solve  = new SolvePuzzle("puzzleOne.csv");
 		solve.search();
 		assertEquals("BONES", solve.getWordsNeededSearch().get(0).getWord());
 		assertEquals("KHAN", solve.getWordsNeededSearch().get(1).getWord());
@@ -32,7 +33,6 @@ public class SolvePuzzleTest {
 	}
 	@Test
 	public void whenSolvePuzzleFoundInputFileAndReadFirstRowForListOfWordsThenCheckNumberOfWords() {
-		SolvePuzzle solve  = new SolvePuzzle("puzzleOne.csv");
 		solve.search();
 		assertEquals(7, solve.getWordsNeededSearch().size());
 
