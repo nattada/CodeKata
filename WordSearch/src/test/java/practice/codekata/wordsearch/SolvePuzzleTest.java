@@ -50,6 +50,7 @@ public class SolvePuzzleTest {
 	public void whenSolvePuzzleReadAFileToBuildAGridItReturnsCorrect2DArrayRepresentationOfTheGrid() {
 		solve.search();
 		assertEquals("U", solve.getGridPuzzle().getGridSquare()[0][0]);
+		assertEquals("B", solve.getGridPuzzle().getGridSquare()[14][14]);
 
 	}
 	

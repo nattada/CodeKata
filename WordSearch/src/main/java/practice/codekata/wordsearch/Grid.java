@@ -1,6 +1,5 @@
 package practice.codekata.wordsearch;
 
-
 public class Grid {
 	int numRow;
 	int numColumn;
@@ -35,6 +34,14 @@ public class Grid {
 	}
 	public String [] getLettersForRow(int row) {
 		return gridSquare[row];
+	}
+	public String[] getLettersForCol(int col) {
+		int columnSize = getNumColumn();
+		String [] letters = new String[columnSize];
+		for(int i = 0; i < getNumRow(); i ++) {
+			letters[i] = gridSquare[i][col];
+		}
+		return letters;
 	}
 
 }

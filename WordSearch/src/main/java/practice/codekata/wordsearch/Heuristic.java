@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 public class Heuristic {
 	private List<Words> wordsLeftToSearch;
 	private Grid grid;
@@ -16,29 +15,45 @@ public class Heuristic {
 		wordsLeftToSearch = wordsNeededSearch;
 		grid = puzzleGrid;
 		// initial attempt using bruteforce
-		return 	findWordsHorizontally();
+		findWordsHorizontally();
+		findWordsVertically();
+		return wordsLeftToSearch;
 
 	}
 
-	private List<Words> findWordsHorizontally() {
-		List<Words> wordsToSearch = wordsLeftToSearch.stream().filter(word -> !word.isFound())
-				.collect(Collectors.toList());
-		for (int row = 0; row < grid.getNumRow(); row++) {
-			String rowLetters = Arrays.stream((grid.getLettersForRow(row))).reduce("", String::concat);;
-			for (Words word : wordsToSearch) {
+	private void findWordsVertically() {
+
+		for (int col = 0; col < grid.getNumColumn(); col++) {
+			String colLetter = Arrays.stream((grid.getLettersForCol(col))).reduce("", String::concat);
+			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
-				if(rowLetters.contains(strWord)) {
-					word.setFound(true);
-					word.setFistColumnLetterLocation(rowLetters.indexOf(String.valueOf(strWord.charAt(0))));
-					word.setLastColumnLetterLocation(rowLetters.indexOf(String.valueOf(strWord.charAt(strWord.length()-1))));
-					word.setRowLetterLocation(row);
-					//return the position
+				if (colLetter.contains(strWord)) {
+					word.updateWordState(col, col, colLetter.indexOf(strWord, 0),
+							strWord.length() - 1 + colLetter.indexOf(strWord, 0));
+				}
+
+			}
+		}
+
+	}
+
+	private void findWordsHorizontally() {
+
+		for (int row = 0; row < grid.getNumRow(); row++) {
+			String rowLetters = Arrays.stream((grid.getLettersForRow(row))).reduce("", String::concat);
+			for (Words word : getWordsNotFound()) {
+				String strWord = word.getWord();
+				if (rowLetters.contains(strWord)) {
+					word.updateWordState(rowLetters.indexOf(strWord, 0),
+							strWord.length() - 1 + rowLetters.indexOf(strWord, 0), row, row);
 				}
 			}
 		}
-		//update the list of unfound words
-		wordsLeftToSearch = wordsToSearch; 
-		return wordsLeftToSearch;
+
+	}
+
+	private List<Words> getWordsNotFound() {
+		return wordsLeftToSearch.stream().filter(word -> !word.isFound()).collect(Collectors.toList());
 	}
 
 }
