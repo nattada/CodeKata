@@ -43,5 +43,20 @@ public class Grid {
 		}
 		return letters;
 	}
+	
+	public String[] getLettersDiagonallyDescending(int row,int col) {
+		int size = getNumColumn() - row;
+		String [] letters = new String[size];
+		if(row == col) {
+			for(int i = 0; i < getNumRow(); i ++) {
+				letters[i] = gridSquare[i][i];
+			}
+		}else
+			for(int i = 0; i < getNumColumn(); i ++) {
+				letters[i] = gridSquare[row++][col++];
+			}
+	
+		return letters;
+	}
 
 }
