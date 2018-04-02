@@ -15,13 +15,27 @@ import java.util.stream.Stream;
 public class SolvePuzzle {
 	private String inputFile;
 	private List<Words> wordsNeededSearch;
-	private Grid gridPuzzle;
+	private Grid puzzleGrid;
 
 	public SolvePuzzle(String inputFile) {
 		this.inputFile = inputFile;
 	}
 
 	public String search() {
+		String result;
+		
+			result = buildPuzzle();
+			solvePuzzle(wordsNeededSearch,puzzleGrid);
+		
+		return result;// continue with the search
+	}
+
+	private void solvePuzzle(List<Words> wordsNeededSearch2, Grid puzzleGrid2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private String buildPuzzle() {
 		try {
 			InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(inputFile);
 			if (inputStream == null) {
@@ -29,13 +43,13 @@ public class SolvePuzzle {
 			}
 			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 			wordsNeededSearch = getListOfWords(br.readLine());
-			gridPuzzle = buildGrid(br);
-
+			puzzleGrid = buildGrid(br);
 			br.close();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "Success";// continue with the search
+		return "Success";
 	}
 
 	private Grid buildGrid(BufferedReader br) {
@@ -57,7 +71,7 @@ public class SolvePuzzle {
 			e.printStackTrace();
 		}
 
-		return new Grid(row,charArray);
+		return new Grid(row, charArray);
 	}
 
 	private List<Words> getListOfWords(String line) {
@@ -78,7 +92,7 @@ public class SolvePuzzle {
 	}
 
 	public Grid getGridPuzzle() {
-		return gridPuzzle;
+		return puzzleGrid;
 	}
 
 }

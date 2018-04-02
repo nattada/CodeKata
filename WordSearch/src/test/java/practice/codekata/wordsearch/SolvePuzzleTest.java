@@ -52,4 +52,10 @@ public class SolvePuzzleTest {
 		assertEquals("U", solve.getGridPuzzle().getGridSquare()[0][0]);
 
 	}
+	
+//	@Test
+//	public void whenSearchingHorizontallyWordOnTheXAxisFoundIfItExist() {
+//		solve.search();
+//		assertEquals("Found", solve.findWordsHorizontally(solve.getWordsNeededSearch(),solve.getGridPuzzle().getGridSquare()));
+//	}
 }
