@@ -1,4 +1,5 @@
 package practice.codekata.wordsearch;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -43,6 +44,12 @@ public class SolvePuzzleTest {
 		solve.search();
 		assertEquals(15, solve.getGridPuzzle().getNumColumn());
 		assertEquals(15, solve.getGridPuzzle().getNumRow());
+
+	}
+	@Test
+	public void whenSolvePuzzleReadAFileToBuildAGridItReturnsCorrect2DArrayRepresentationOfTheGrid() {
+		solve.search();
+		assertEquals("U", solve.getGridPuzzle().getGridSquare()[0][0]);
 
 	}
 }
