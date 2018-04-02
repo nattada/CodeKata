@@ -53,9 +53,5 @@ public class SolvePuzzleTest {
 
 	}
 	
-//	@Test
-//	public void whenSearchingHorizontallyWordOnTheXAxisFoundIfItExist() {
-//		solve.search();
-//		assertEquals("Found", solve.findWordsHorizontally(solve.getWordsNeededSearch(),solve.getGridPuzzle().getGridSquare()));
-//	}
+
 }

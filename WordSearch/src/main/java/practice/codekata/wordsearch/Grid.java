@@ -1,5 +1,6 @@
 package practice.codekata.wordsearch;
 
+
 public class Grid {
 	int numRow;
 	int numColumn;
@@ -8,7 +9,15 @@ public class Grid {
 		this.numColumn = size;
 		this.numRow = size;
 		gridSquare = new String[size][size];
-		System.arraycopy(charArray, 0, gridSquare, 0, size);
+		copyArray(charArray);
+		//System.arraycopy(charArray, 0, gridSquare, 0, size);
+	}
+	private void copyArray(String[][] srcArray) {
+		for(int i= 0; i< getNumRow(); i++) {
+			String [] row = srcArray[i];
+			gridSquare[i] = new String[getNumRow()];
+			System.arraycopy(row, 0, gridSquare[i], 0, getNumRow());
+		}
 	}
 	public int getNumRow() {
 		return numRow;
@@ -19,6 +28,13 @@ public class Grid {
 	
 	public String[][] getGridSquare(){
 		return gridSquare;
+	}
+	
+	public String getLetterFromPosition(int row, int col) {
+		return gridSquare[row][col];
+	}
+	public String [] getLettersForRow(int row) {
+		return gridSquare[row];
 	}
 
 }

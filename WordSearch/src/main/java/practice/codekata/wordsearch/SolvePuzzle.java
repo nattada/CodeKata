@@ -6,11 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class SolvePuzzle {
 	private String inputFile;
@@ -25,17 +21,12 @@ public class SolvePuzzle {
 		String result;
 		
 			result = buildPuzzle();
-			solvePuzzle(wordsNeededSearch,puzzleGrid);
 		
 		return result;// continue with the search
 	}
 
-	private void solvePuzzle(List<Words> wordsNeededSearch2, Grid puzzleGrid2) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	private String buildPuzzle() {
+	public String buildPuzzle() {
 		try {
 			InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(inputFile);
 			if (inputStream == null) {
