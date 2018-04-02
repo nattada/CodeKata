@@ -14,7 +14,10 @@ public class HeuristicTest {
 	public List<Words> wordFoundList;
 	public Heuristic heuristic;
 	public Optional<Words> horizontalWord;
+	public Optional<Words> reverseHorizontalWord;
 	public Optional<Words> verticleWord;
+	public Optional<Words> reverseVerticleWord;
+
 
 	@Before
 	public void setUp() {
@@ -25,14 +28,19 @@ public class HeuristicTest {
 		heuristic = new Heuristic();
 		wordFoundList = heuristic.solvePuzzle(words, puzzle);
 		horizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY")).findFirst();
+		reverseHorizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK")).findFirst();
 		verticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("BONES")).findFirst();
+		reverseVerticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KHAN")).findFirst();
+
 		
 		
 	}
+	
 	@Test
-	public void whenSearchingHorizontallyWordOnTheXAxisFoundIfItExists() {
-		assertEquals("BONES",verticleWord.get().getWord());
+	public void whenSearchingHorizontallyAndWordOnTheXAxisFoundIfItExists() {
+		assertEquals("SCOTTY",horizontalWord.get().getWord());
 	}
+	
 	@Test
 	public void whenWordIsFoundBySearchingHorizontallyReturnTheRowPositionOfThatWordOnTheGrid() {
 		assertEquals(5,horizontalWord.get().getFirstRowLetterLocation());
@@ -47,11 +55,33 @@ public class HeuristicTest {
 	public void whenWordIsFoundBySearchingHorizontallyReturnTheLastColumnPositionOfThatWordOnTheGrid() {
 		assertEquals(5,horizontalWord.get().getLastColumnLetterLocation());
 	}
+
+	@Test
+	public void whenSearchingHorizontallyAndWordOnTheXAxisFoundIfItExistsInABackwardDirection() {
+		assertEquals("KIRK",reverseHorizontalWord.get().getWord());
+	}
 	
 	@Test
-	public void whenSearchingVerticallyWordOnTheYAxisFoundIfItExists() {
+	public void whenWordIsFoundBySearchingHorizontallyBackwardReturnTheRowPositionOfThatWordOnTheGrid() {
+		assertEquals(7,reverseHorizontalWord.get().getFirstRowLetterLocation());
+		assertEquals(7,reverseHorizontalWord.get().getLastRowLetterLocation());
+
+	}
+	@Test
+	public void whenWordIsFoundBySearchingHorizontallyBackwordReturnTheFirstColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(4,reverseHorizontalWord.get().getFirstColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingHorizontallyBackWardReturnTheLastColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(1,reverseHorizontalWord.get().getLastColumnLetterLocation());
+	}
+	
+	@Test
+	public void whenSearchingVerticallAndWordOnTheYAxisFoundIfItExistsInDownWordDirection() {
 		assertEquals("BONES",verticleWord.get().getWord());
 	}
+	
+
 	@Test
 	public void whenWordIsFoundBySearchingVerticallyReturnTheFirstRowPositionOfThatWordOnTheGrid() {
 		assertEquals(6,verticleWord.get().getFirstRowLetterLocation());
@@ -64,6 +94,25 @@ public class HeuristicTest {
 	public void whenWordIsFoundBySearchingVerticallyReturnTheColumnPositionOfThatWordOnTheGrid() {
 		assertEquals(0,verticleWord.get().getFirstColumnLetterLocation());		
 		assertEquals(0,verticleWord.get().getLastColumnLetterLocation());
+
+	}
+	
+	@Test
+	public void whenSearchingVerticallyAndWordOnTheYAxisFoundIfItExistsInUpwardDirection() {
+		assertEquals("KHAN",reverseVerticleWord.get().getWord());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheFirstRowPositionOfThatWordOnTheGrid() {
+		assertEquals(9,reverseVerticleWord.get().getFirstRowLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheLastRowPositionOfThatWordOnTheGrid() {
+		assertEquals(6,reverseVerticleWord.get().getLastRowLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(5,reverseVerticleWord.get().getFirstColumnLetterLocation());		
+		assertEquals(5,reverseVerticleWord.get().getLastColumnLetterLocation());
 
 	}
 	

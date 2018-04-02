@@ -25,11 +25,17 @@ public class Heuristic {
 
 		for (int col = 0; col < grid.getNumColumn(); col++) {
 			String colLetter = Arrays.stream((grid.getLettersForCol(col))).reduce("", String::concat);
+			String reverse = new StringBuilder(colLetter).reverse().toString();
+
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
 				if (colLetter.contains(strWord)) {
 					word.updateWordState(col, col, colLetter.indexOf(strWord, 0),
 							strWord.length() - 1 + colLetter.indexOf(strWord, 0));
+				}
+				if(reverse.contains(strWord)) {
+					int startIndex =reverse.length() - 1 - reverse.indexOf(strWord, 0);
+					word.updateWordState(col, col, startIndex, startIndex - strWord.length()+1);
 				}
 
 			}
@@ -41,11 +47,17 @@ public class Heuristic {
 
 		for (int row = 0; row < grid.getNumRow(); row++) {
 			String rowLetters = Arrays.stream((grid.getLettersForRow(row))).reduce("", String::concat);
+			String reverse = new StringBuilder(rowLetters).reverse().toString();
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
+				
 				if (rowLetters.contains(strWord)) {
 					word.updateWordState(rowLetters.indexOf(strWord, 0),
 							strWord.length() - 1 + rowLetters.indexOf(strWord, 0), row, row);
+				}
+				if(reverse.contains(strWord)) {
+					int startIndex =reverse.length() - 1 - reverse.indexOf(strWord, 0);
+					word.updateWordState(startIndex, startIndex - strWord.length() +1,row,row);
 				}
 			}
 		}
