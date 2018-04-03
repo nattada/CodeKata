@@ -19,6 +19,7 @@ public class HeuristicTest {
 	public Optional<Words> reverseVerticleWord;
 	public Optional<Words> diagonallyDescendingAboveWord;
 	public Optional<Words> diagonallyDescendingBelowWord;
+	public Optional<Words> diagonallyDescendingBackWardWord;
 
 
 
@@ -40,9 +41,14 @@ public class HeuristicTest {
 		reverseVerticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KHAN") && word.isFound()).findFirst();
 		diagonallyDescendingAboveWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SPOCK") && word.isFound()).findFirst();
 		diagonallyDescendingBelowWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("RIGQB") && word.isFound()).findFirst();
+		diagonallyDescendingBackWardWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SULU") && word.isFound()).findFirst();
 
 		
 		
+	}
+	@Test
+	public void whenSearchingDiagonallyDescengingAndWordFoundBackWard() {
+		assertEquals("SULU",diagonallyDescendingBackWardWord.get().getWord());
 	}
 	//Center line is a diagonally line from top left corner of the grid to bottom right corner
 	@Test

@@ -68,12 +68,17 @@ public class Heuristic {
 	private void findWordsDiagonallyDescending() {
 		for (int row = 0; row < grid.getNumRow(); row++) {
 			String rowLetters = Arrays.stream((grid.getLettersDiagonallyDescending(row, 0))).reduce("", String::concat);
+			String reverse = reverseString(rowLetters);
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
 				if (rowLetters.contains(strWord)) {
 					int firstLetterStartIndex = rowLetters.indexOf(strWord, 0);
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
 							row + firstLetterStartIndex, row + firstLetterStartIndex + strWord.length() - 1);
+				}
+				if (reverse.contains(strWord)) {
+					int firstLetterStartIndex = rowLetters.indexOf(strWord, 0);
+					word.updateWordState(0,0,0,0);
 				}
 			}
 		}
