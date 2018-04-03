@@ -77,8 +77,9 @@ public class Heuristic {
 							row + firstLetterStartIndex, row + firstLetterStartIndex + strWord.length() - 1);
 				}
 				if (reverse.contains(strWord)) {
-					int firstLetterStartIndex = rowLetters.indexOf(strWord, 0);
-					word.updateWordState(0,0,0,0);
+					int firstLetterStartIndex = reverse.length() - 1 - reverse.indexOf(strWord, 0);
+					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex - strWord.length() + 1,
+							firstLetterStartIndex + row, firstLetterStartIndex + row - strWord.length() +1);
 				}
 			}
 		}

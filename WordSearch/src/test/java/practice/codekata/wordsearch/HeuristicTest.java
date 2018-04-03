@@ -47,10 +47,26 @@ public class HeuristicTest {
 		
 	}
 	@Test
-	public void whenSearchingDiagonallyDescengingAndWordFoundBackWard() {
+	public void whenSearchingDiagonallyDescendingAndWordFoundBackWard() {
 		assertEquals("SULU",diagonallyDescendingBackWardWord.get().getWord());
 	}
 	//Center line is a diagonally line from top left corner of the grid to bottom right corner
+	@Test
+	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid(){
+		assertEquals(3,diagonallyDescendingBackWardWord.get().getFirstColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheLastLetterColumnPositionOfThatWordOnTheGrid(){
+		assertEquals(0,diagonallyDescendingBackWardWord.get().getLastColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheFirstLetterRowPositionOfThatWordOnTheGrid(){
+		assertEquals(3,diagonallyDescendingBackWardWord.get().getFirstRowLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheLastLetterRowPositionOfThatWordOnTheGrid(){
+		assertEquals(0,diagonallyDescendingBackWardWord.get().getLastRowLetterLocation());
+	}
 	@Test
 	public void whenSearchingDiagonallyDescengingAndWordFoundAboveCenterLine() {
 		assertEquals("SPOCK",diagonallyDescendingAboveWord.get().getWord());
