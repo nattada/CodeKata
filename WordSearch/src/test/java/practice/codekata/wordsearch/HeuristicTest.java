@@ -19,7 +19,8 @@ public class HeuristicTest {
 	public Optional<Words> reverseVerticleWord;
 	public Optional<Words> diagonallyDescendingAboveWord;
 	public Optional<Words> diagonallyDescendingBelowWord;
-	public Optional<Words> diagonallyDescendingBackWardWord;
+	public Optional<Words> diagonallyDescendingBackwardWord;
+	public Optional<Words> diagonallyDescendingBackwardBelowWord;
 
 
 
@@ -32,8 +33,10 @@ public class HeuristicTest {
 		words = buildPuzzle.getWordsNeededSearch();
 		heuristic = new Heuristic();
 
-		Words newWord = new Words("RIGQB");
-		words.add(newWord);
+		Words descendingBelowWord = new Words("RIGQB");
+		words.add(descendingBelowWord);
+		Words descendingBelowBackwardWord = new Words("PFPHI");
+		words.add(descendingBelowBackwardWord);
 		wordFoundList = heuristic.solvePuzzle(words, puzzle);
 		horizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY") && word.isFound()).findFirst();
 		reverseHorizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK") && word.isFound()).findFirst();
@@ -41,31 +44,53 @@ public class HeuristicTest {
 		reverseVerticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KHAN") && word.isFound()).findFirst();
 		diagonallyDescendingAboveWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SPOCK") && word.isFound()).findFirst();
 		diagonallyDescendingBelowWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("RIGQB") && word.isFound()).findFirst();
-		diagonallyDescendingBackWardWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SULU") && word.isFound()).findFirst();
+		diagonallyDescendingBackwardWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SULU") && word.isFound()).findFirst();
+		diagonallyDescendingBackwardBelowWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("PFPHI") && word.isFound()).findFirst();
+		
+		
+	}
+	//Center line is a diagonally line from top left corner of the grid to bottom right corner
 
-		
-		
+	@Test
+	public void whenSearchingDiagonallyDescendingBackwardAboveenterLineAWordShouldBeFound() {
+		assertEquals("PFPHI",diagonallyDescendingBackwardBelowWord.get().getWord());
+	}
+	
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(13, diagonallyDescendingBackwardBelowWord.get().getFirstColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(9, diagonallyDescendingBackwardBelowWord.get().getLastColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(7, diagonallyDescendingBackwardBelowWord.get().getFirstRowLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheLastLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(3, diagonallyDescendingBackwardBelowWord.get().getLastRowLetterLocation());
 	}
 	@Test
 	public void whenSearchingDiagonallyDescendingAndWordFoundBackWard() {
-		assertEquals("SULU",diagonallyDescendingBackWardWord.get().getWord());
+		assertEquals("SULU",diagonallyDescendingBackwardWord.get().getWord());
 	}
-	//Center line is a diagonally line from top left corner of the grid to bottom right corner
 	@Test
 	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid(){
-		assertEquals(3,diagonallyDescendingBackWardWord.get().getFirstColumnLetterLocation());
+		assertEquals(3,diagonallyDescendingBackwardWord.get().getFirstColumnLetterLocation());
 	}
 	@Test
 	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheLastLetterColumnPositionOfThatWordOnTheGrid(){
-		assertEquals(0,diagonallyDescendingBackWardWord.get().getLastColumnLetterLocation());
+		assertEquals(0,diagonallyDescendingBackwardWord.get().getLastColumnLetterLocation());
 	}
 	@Test
 	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheFirstLetterRowPositionOfThatWordOnTheGrid(){
-		assertEquals(3,diagonallyDescendingBackWardWord.get().getFirstRowLetterLocation());
+		assertEquals(3,diagonallyDescendingBackwardWord.get().getFirstRowLetterLocation());
 	}
 	@Test
 	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheLastLetterRowPositionOfThatWordOnTheGrid(){
-		assertEquals(0,diagonallyDescendingBackWardWord.get().getLastRowLetterLocation());
+		assertEquals(0,diagonallyDescendingBackwardWord.get().getLastRowLetterLocation());
 	}
 	@Test
 	public void whenSearchingDiagonallyDescengingAndWordFoundAboveCenterLine() {

@@ -67,32 +67,40 @@ public class Heuristic {
 
 	private void findWordsDiagonallyDescending() {
 		for (int row = 0; row < grid.getNumRow(); row++) {
-			String rowLetters = Arrays.stream((grid.getLettersDiagonallyDescending(row, 0))).reduce("", String::concat);
-			String reverse = reverseString(rowLetters);
+			String letters = Arrays.stream((grid.getLettersDiagonallyDescending(row, 0))).reduce("", String::concat);
+			String reverse = reverseString(letters);
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
-				if (rowLetters.contains(strWord)) {
-					int firstLetterStartIndex = rowLetters.indexOf(strWord, 0);
+				if (letters.contains(strWord)) {
+					int firstLetterStartIndex = letters.indexOf(strWord, 0);
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
 							row + firstLetterStartIndex, row + firstLetterStartIndex + strWord.length() - 1);
 				}
 				if (reverse.contains(strWord)) {
 					int firstLetterStartIndex = reverse.length() - 1 - reverse.indexOf(strWord, 0);
-					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex - strWord.length() + 1,
-							firstLetterStartIndex + row, firstLetterStartIndex + row - strWord.length() +1);
+					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex - (strWord.length() - 1),
+							firstLetterStartIndex + row, firstLetterStartIndex + row - (strWord.length() -1));
 				}
 			}
 		}
 
 		for (int col = 1; col < grid.getNumRow(); col++) {
-			String rowLetters = Arrays.stream((grid.getLettersDiagonallyDescending(0, col))).reduce("", String::concat);
+			String letters = Arrays.stream((grid.getLettersDiagonallyDescending(0, col))).reduce("", String::concat);
+			String reverse = reverseString(letters);
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
-				if (rowLetters.contains(strWord)) {
-					int firstLetterStartIndex = rowLetters.indexOf(strWord, 0);
+				if (letters.contains(strWord)) {
+					int firstLetterStartIndex = letters.indexOf(strWord, 0);
 					word.updateWordState(col + firstLetterStartIndex,
-							col + firstLetterStartIndex + strWord.length() - 1, firstLetterStartIndex,
+							col + firstLetterStartIndex + (strWord.length() - 1), firstLetterStartIndex,
 							firstLetterStartIndex + (strWord.length() - 1));
+				}
+				if (reverse.contains(strWord)) {
+					int firstLetterStartIndex = reverse.indexOf(strWord, 0);
+					int firstLetterColPos = col + reverse.length()-1 - firstLetterStartIndex;
+					int firstLetterRowPos = (reverse.length() -1)-firstLetterStartIndex;
+					word.updateWordState(firstLetterColPos,  firstLetterColPos -(strWord.length() -1)
+							,firstLetterRowPos,firstLetterRowPos - (strWord.length() -1));
 				}
 			}
 		}
