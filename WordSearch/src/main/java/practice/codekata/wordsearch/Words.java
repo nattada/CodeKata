@@ -9,6 +9,10 @@ public class Words {
 	private int firstRowLetterLocation;
 	private int lastRowLetterLocation;
 
+	public Words(String text) {
+		this.word = text;
+		this.found = false;
+	}
 	public String getWord() {
 		return word;
 	}

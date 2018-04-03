@@ -17,6 +17,10 @@ public class HeuristicTest {
 	public Optional<Words> reverseHorizontalWord;
 	public Optional<Words> verticleWord;
 	public Optional<Words> reverseVerticleWord;
+	public Optional<Words> diagonallyDescendingAboveWord;
+	public Optional<Words> diagonallyDescendingBelowWord;
+
+
 
 
 	@Before
@@ -26,14 +30,63 @@ public class HeuristicTest {
 		puzzle =buildPuzzle.getGridPuzzle();
 		words = buildPuzzle.getWordsNeededSearch();
 		heuristic = new Heuristic();
+
+		Words newWord = new Words("RIGQB");
+		words.add(newWord);
 		wordFoundList = heuristic.solvePuzzle(words, puzzle);
-		horizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY")).findFirst();
-		reverseHorizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK")).findFirst();
-		verticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("BONES")).findFirst();
-		reverseVerticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KHAN")).findFirst();
+		horizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY") && word.isFound()).findFirst();
+		reverseHorizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK") && word.isFound()).findFirst();
+		verticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("BONES") && word.isFound()).findFirst();
+		reverseVerticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KHAN") && word.isFound()).findFirst();
+		diagonallyDescendingAboveWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SPOCK") && word.isFound()).findFirst();
+		diagonallyDescendingBelowWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("RIGQB") && word.isFound()).findFirst();
 
 		
 		
+	}
+	//Center line is a diagonally line from top left corner of the grid to bottom right corner
+	@Test
+	public void whenSearchingDiagonallyDescengingAndWordFoundAboveCenterLine() {
+		assertEquals("SPOCK",diagonallyDescendingAboveWord.get().getWord());
+	}
+	@Test
+	public void whenSearchingDiagonallyDescengingAndWordFoundBelowCenterLine() {
+		assertEquals("RIGQB",diagonallyDescendingBelowWord.get().getWord());
+	}
+	@Test
+	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheFirstColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(2,diagonallyDescendingBelowWord.get().getFirstColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheLastColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(6,diagonallyDescendingBelowWord.get().getLastColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheFirstRowPositionOfThatWordOnTheGrid() {
+		assertEquals(7,diagonallyDescendingBelowWord.get().getFirstRowLetterLocation());
+	}
+	
+	@Test
+	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheLastRowPositionOfThatWordOnTheGrid() {
+		assertEquals(11,diagonallyDescendingBelowWord.get().getLastRowLetterLocation());
+	}
+	
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheFirstColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(2,diagonallyDescendingAboveWord.get().getFirstColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheLastColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(6,diagonallyDescendingAboveWord.get().getLastColumnLetterLocation());
+	}
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheFirstRowPositionOfThatWordOnTheGrid() {
+		assertEquals(1,diagonallyDescendingAboveWord.get().getFirstRowLetterLocation());
+	}
+	
+	@Test
+	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheLastRowPositionOfThatWordOnTheGrid() {
+		assertEquals(5,diagonallyDescendingAboveWord.get().getLastRowLetterLocation());
 	}
 	
 	@Test

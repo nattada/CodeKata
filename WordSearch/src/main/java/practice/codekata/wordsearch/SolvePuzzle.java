@@ -70,9 +70,7 @@ public class SolvePuzzle {
 
 		String[] firstLine = line.split(",");
 		for (String word : firstLine) {
-			Words w = new Words();
-			w.setFound(false);
-			w.setWord(word);
+			Words w = new Words(word);
 			wordsList.add(w);
 		}
 		return wordsList;

@@ -19,9 +19,20 @@ public class GridTest {
 	}
 	
 	@Test
-	public void whentheSameValueOfRowAndColumnArePassedToGetLettersDiagonallyDescendingThenReturnsAllLettersWhereRowIndexIsEqualToColumnIndex() {
+	public void whentheSameValueOfRowAndColumnArePassedToGetLettersDiagonallyDescendingThenReturnsAllLettersWhereRowIndexIsEqualToColumnIndexFromTheStartingIndex() {
 		String [] letters =puzzle.getLettersDiagonallyDescending(0, 0);
 		assertEquals("ULUSGYEMECEOZXB",Arrays.stream(letters).reduce("", String::concat));
+	}
+	
+	@Test
+	public void whenValueOfRowIsGreaterThanColumnArePassedToGetLettersDiagonallyDescendingThenReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+		String [] letters =puzzle.getLettersDiagonallyDescending(4, 0);
+		assertEquals("ACQIYKIECBC",Arrays.stream(letters).reduce("", String::concat));
+	}
+	@Test
+	public void whenValueOfRowIsLessThanColumnArePassedToGetLettersDiagonallyDescendingThenReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+		String [] letters =puzzle.getLettersDiagonallyDescending(0, 3);
+		assertEquals("HKPQRRVFRYWK",Arrays.stream(letters).reduce("", String::concat));
 	}
 	
 
