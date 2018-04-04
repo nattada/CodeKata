@@ -18,6 +18,7 @@ public class Heuristic {
 		findWordsHorizontally();
 		findWordsVertically();
 		findWordsDiagonallyDescending();
+		findWordsDiagonallyAscending();
 		return wordsLeftToSearch;
 
 	}
@@ -105,6 +106,10 @@ public class Heuristic {
 			}
 		}
 
+	}
+	
+	private void findWordsDiagonallyAscending() {
+		
 	}
 
 	private List<Words> getWordsNotFound() {

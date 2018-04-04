@@ -19,13 +19,13 @@ public class GridTest {
 	}
 	
 	@Test
-	public void whentheSameValueOfRowAndColumnArePassedToGetLettersDiagonallyDescendingThenReturnsAllLettersWhereRowIndexIsEqualToColumnIndexFromTheStartingIndex() {
+	public void whenValueOfRowAndColumnAreZeroAndArePassedToGetLettersDiagonallyDescendingReturnsAllLettersWhereRowIndexIsEqualToColumnIndexStartingFromTheLeftTopCorner() {
 		String [] letters =puzzle.getLettersDiagonallyDescending(0, 0);
 		assertEquals("ULUSGYEMECEOZXB",Arrays.stream(letters).reduce("", String::concat));
 	}
 	
 	@Test
-	public void whenValueOfRowIsGreaterThanColumnArePassedToGetLettersDiagonallyDescendingThenReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+	public void whenValueOfRowIsGreaterThanColumnArePassedToGetLettersDiagonallyDescendingReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
 		String [] letters =puzzle.getLettersDiagonallyDescending(4, 0);
 		assertEquals("ACQIYKIECBC",Arrays.stream(letters).reduce("", String::concat));
 	}
@@ -35,5 +35,21 @@ public class GridTest {
 		assertEquals("HKPQRRVFRYWK",Arrays.stream(letters).reduce("", String::concat));
 	}
 	
+	@Test
+	public void whenValueOfRowAndColumnAreSizeOfTheGridAndPassedToGetLettersDiagonallyAscendingReturnsAllLettersAlongTheDiagnolLineStartingFromTheLeftBottomCorner() {
+		String [] letters =puzzle.getLettersDiagonallyAscending(puzzle.getNumRow(), puzzle.getNumColumn());
+		assertEquals("KZYBMKQMEEHKXYE", Arrays.stream(letters).reduce("", String::concat));
+	}
+	@Test
+	public void whenValueOfRowIsGreaterThanColumnArePassedToGetLettersDiagonallyAscendingReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+		String [] letters =puzzle.getLettersDiagonallyAscending(11, 0);
+		assertEquals("TJZIKNKRTHGO",Arrays.stream(letters).reduce("", String::concat));
+	}
+	
+	@Test
+	public void whenValueOfRowIsLessThanColumnArePassedToGetLettersDiagonallyAscendingThenReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+		String [] letters =puzzle.getLettersDiagonallyAscending(0, 5);
+		assertEquals("SYJPKL",Arrays.stream(letters).reduce("", String::concat));
+	}
 
 }

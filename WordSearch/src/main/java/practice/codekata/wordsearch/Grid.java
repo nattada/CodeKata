@@ -52,25 +52,40 @@ public class Grid {
 
 	public String[] getLettersDiagonallyDescending(int row, int col) {
 		String[] letters;
+		int size;
 		if (row == col) {
-			int size = getNumRow();
-			letters = new String[size];
-			for (int i = 0; i < getNumRow(); i++) {
-				letters[i] = gridSquare[i][i];
-			}
-		} else if (row > col) {
-			int size = getNumColumn() - row;
-			letters = new String[size];
-			for (int i = 0; i < size; i++) {
-				letters[i] = gridSquare[row++][col++];
-			}
-		} else {
-			int size = getNumColumn() - col;
-			letters = new String[size];
-			for (int i = 0; i < size; i++) {
-				letters[i] = gridSquare[row++][col++];
-			}
+			size = getNumRow();
 
+		} else if (row > col) {
+			size = getNumColumn() - row;
+		} else {
+			size = getNumColumn() - col;
+
+		}
+		letters = new String[size];
+		for (int i = 0; i < size; i++) {
+			letters[i] = gridSquare[row++][col++];
+		}
+
+		return letters;
+	}
+
+	public String[] getLettersDiagonallyAscending(int row, int col) {
+		String[] letters = null;
+		int index = 0;
+		int columnIndex = 0;
+		int size;
+		if (row == col) {
+			size = getNumRow();
+		} else if (row > col) {
+			size = row + 1;
+
+		} else {
+			size = col + 1;
+		}
+		letters = new String[size];
+		for (int i = size - 1; i >= 0; i--) {
+			letters[index++] = gridSquare[i][columnIndex++];
 		}
 
 		return letters;
