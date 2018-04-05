@@ -21,7 +21,7 @@ public class HeuristicTest {
 	public Optional<Words> wordFoundDiagonallyDescendingBelowCenterLine;
 	public Optional<Words> wordFoundDiagonallyDescendingBackwardAboveCenterLine;
 	public Optional<Words> wordFoundDiagonallyDescendingBackwardBelowCenterLine;
-	public Optional<Words> diagonallyAscending;
+	public Optional<Words> wordFoundDiagonallyAscendingAboveCenterLine;
 
 
 
@@ -34,10 +34,13 @@ public class HeuristicTest {
 		words = buildPuzzle.getWordsNeededSearch();
 		heuristic = new Heuristic();
 
-		Words descendingBelowWord = new Words("RIGQB");
-		words.add(descendingBelowWord);
-		Words descendingBelowBackwardWord = new Words("PFPHI");
-		words.add(descendingBelowBackwardWord);
+		Words descendingBelowCenterLineWord = new Words("RIGQB");
+		words.add(descendingBelowCenterLineWord);
+		Words descendingBackwardBelowCenterLineWord = new Words("PFPHI");
+		words.add(descendingBackwardBelowCenterLineWord);
+		
+		Words ascendingAboveCenterWord = new Words("OPZI");
+		words.add(ascendingAboveCenterWord);
 		
 		wordFoundList = heuristic.solvePuzzle(words, puzzle);
 		wordFounHorizontally = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY") && word.isFound()).findFirst();
@@ -48,11 +51,15 @@ public class HeuristicTest {
 		wordFoundDiagonallyDescendingBelowCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("RIGQB") && word.isFound()).findFirst();
 		wordFoundDiagonallyDescendingBackwardBelowCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SULU") && word.isFound()).findFirst();
 		wordFoundDiagonallyDescendingBackwardAboveCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("PFPHI") && word.isFound()).findFirst();
-		diagonallyAscending = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("UHURA") && word.isFound()).findFirst();
+		wordFoundDiagonallyAscendingAboveCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("OPZI") && word.isFound()).findFirst();
  
 		
 	}
-	//Center line is a diagonally line from top left corner of the grid to bottom right corner
+	//Center line is a diagonally line from bottom left corner of the grid to top right corner
+	@Test
+	public void whenSearchingDiagonallyAscendingAboveCenterLineAWordShouldBeFound() {
+		assertEquals("OPZI",wordFoundDiagonallyAscendingAboveCenterLine.get().getWord());
+	}
 
 	@Test
 	public void whenSearchingDiagonallyDescendingBackwardAboveCenterLineAWordShouldBeFound() {

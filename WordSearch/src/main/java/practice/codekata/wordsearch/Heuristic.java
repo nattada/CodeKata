@@ -109,7 +109,15 @@ public class Heuristic {
 	}
 	
 	private void findWordsDiagonallyAscending() {
-		
+		for (int row = grid.getNumRow()-1; row > 0; row--) {
+			String letters = Arrays.stream((grid.getLettersDiagonallyAscending(row, 0))).reduce("", String::concat);
+			for (Words word : getWordsNotFound()) {
+				String strWord = word.getWord();
+				if (letters.contains(strWord)) {
+					word.updateWordState(0,0,0,0);
+				}
+			}
+		}
 	}
 
 	private List<Words> getWordsNotFound() {
