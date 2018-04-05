@@ -13,14 +13,14 @@ public class HeuristicTest {
 	public List<Words> words;
 	public List<Words> wordFoundList;
 	public Heuristic heuristic;
-	public Optional<Words> horizontalWord;
-	public Optional<Words> reverseHorizontalWord;
-	public Optional<Words> verticleWord;
-	public Optional<Words> reverseVerticleWord;
-	public Optional<Words> diagonallyDescendingAboveWord;
-	public Optional<Words> diagonallyDescendingBelowWord;
-	public Optional<Words> diagonallyDescendingBackwardWord;
-	public Optional<Words> diagonallyDescendingBackwardBelowWord;
+	public Optional<Words> wordFounHorizontally;
+	public Optional<Words> wordFoundHorizonallyReverse;
+	public Optional<Words> wordFoundVertically;
+	public Optional<Words> wordFoundVerticallyReverse;
+	public Optional<Words> wordFoundDiagonallyDescendingAboveCenterLine;
+	public Optional<Words> wordFoundDiagonallyDescendingBelowCenterLine;
+	public Optional<Words> wordFoundDiagonallyDescendingBackwardAboveCenterLine;
+	public Optional<Words> wordFoundDiagonallyDescendingBackwardBelowCenterLine;
 	public Optional<Words> diagonallyAscending;
 
 
@@ -38,15 +38,16 @@ public class HeuristicTest {
 		words.add(descendingBelowWord);
 		Words descendingBelowBackwardWord = new Words("PFPHI");
 		words.add(descendingBelowBackwardWord);
+		
 		wordFoundList = heuristic.solvePuzzle(words, puzzle);
-		horizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY") && word.isFound()).findFirst();
-		reverseHorizontalWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK") && word.isFound()).findFirst();
-		verticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("BONES") && word.isFound()).findFirst();
-		reverseVerticleWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KHAN") && word.isFound()).findFirst();
-		diagonallyDescendingAboveWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SPOCK") && word.isFound()).findFirst();
-		diagonallyDescendingBelowWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("RIGQB") && word.isFound()).findFirst();
-		diagonallyDescendingBackwardWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SULU") && word.isFound()).findFirst();
-		diagonallyDescendingBackwardBelowWord = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("PFPHI") && word.isFound()).findFirst();
+		wordFounHorizontally = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY") && word.isFound()).findFirst();
+		wordFoundHorizonallyReverse = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK") && word.isFound()).findFirst();
+		wordFoundVertically = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("BONES") && word.isFound()).findFirst();
+		wordFoundVerticallyReverse = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KHAN") && word.isFound()).findFirst();
+		wordFoundDiagonallyDescendingAboveCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SPOCK") && word.isFound()).findFirst();
+		wordFoundDiagonallyDescendingBelowCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("RIGQB") && word.isFound()).findFirst();
+		wordFoundDiagonallyDescendingBackwardBelowCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SULU") && word.isFound()).findFirst();
+		wordFoundDiagonallyDescendingBackwardAboveCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("PFPHI") && word.isFound()).findFirst();
 		diagonallyAscending = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("UHURA") && word.isFound()).findFirst();
  
 		
@@ -54,167 +55,168 @@ public class HeuristicTest {
 	//Center line is a diagonally line from top left corner of the grid to bottom right corner
 
 	@Test
-	public void whenSearchingDiagonallyDescendingBackwardAboveenterLineAWordShouldBeFound() {
-		assertEquals("PFPHI",diagonallyDescendingBackwardBelowWord.get().getWord());
+	public void whenSearchingDiagonallyDescendingBackwardAboveCenterLineAWordShouldBeFound() {
+		assertEquals("PFPHI",wordFoundDiagonallyDescendingBackwardAboveCenterLine.get().getWord());
 	}
 	
 	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(13, diagonallyDescendingBackwardBelowWord.get().getFirstColumnLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardAboveCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(13, wordFoundDiagonallyDescendingBackwardAboveCenterLine.get().getFirstLetterColumnPosition());
 	}
 	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(9, diagonallyDescendingBackwardBelowWord.get().getLastColumnLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardAboveCenterLineReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(9, wordFoundDiagonallyDescendingBackwardAboveCenterLine.get().getLastLetterColumnPosition());
 	}
 	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
-		assertEquals(7, diagonallyDescendingBackwardBelowWord.get().getFirstRowLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardAboveCenterLineReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(7, wordFoundDiagonallyDescendingBackwardAboveCenterLine.get().getFirstLetterRowPosition());
 	}
 	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescendingBackwardReturnTheLastLetterRowPositionOfThatWordOnTheGrid() {
-		assertEquals(3, diagonallyDescendingBackwardBelowWord.get().getLastRowLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardAboveCenterLineReturnTheLastLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(3, wordFoundDiagonallyDescendingBackwardAboveCenterLine.get().getLastLetterRowPosition());
 	}
 	@Test
-	public void whenSearchingDiagonallyDescendingAndWordFoundBackWard() {
-		assertEquals("SULU",diagonallyDescendingBackwardWord.get().getWord());
+	public void whenSearchingDiagonallyDescendingBackwardOnOrBelowCenterLineAWordShouldBeFound() {
+		assertEquals("SULU",wordFoundDiagonallyDescendingBackwardBelowCenterLine.get().getWord());
 	}
 	@Test
-	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid(){
-		assertEquals(3,diagonallyDescendingBackwardWord.get().getFirstColumnLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardOnOrBelowCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid(){
+		assertEquals(3,wordFoundDiagonallyDescendingBackwardBelowCenterLine.get().getFirstLetterColumnPosition());
 	}
 	@Test
-	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheLastLetterColumnPositionOfThatWordOnTheGrid(){
-		assertEquals(0,diagonallyDescendingBackwardWord.get().getLastColumnLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardOnOrBelowCenterLineReturnTheLastLetterColumnPositionOfThatWordOnTheGrid(){
+		assertEquals(0,wordFoundDiagonallyDescendingBackwardBelowCenterLine.get().getLastLetterColumnPosition());
 	}
 	@Test
-	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheFirstLetterRowPositionOfThatWordOnTheGrid(){
-		assertEquals(3,diagonallyDescendingBackwardWord.get().getFirstRowLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardOnOrBelowCenterLineReturnTheFirstLetterRowPositionOfThatWordOnTheGrid(){
+		assertEquals(3,wordFoundDiagonallyDescendingBackwardBelowCenterLine.get().getFirstLetterRowPosition());
 	}
 	@Test
-	public void whenWordIsFoundOnOrAboveCenterLineBySearchingDiagonallyDescendingReturnTheLastLetterRowPositionOfThatWordOnTheGrid(){
-		assertEquals(0,diagonallyDescendingBackwardWord.get().getLastRowLetterLocation());
-	}
-	@Test
-	public void whenSearchingDiagonallyDescengingAndWordFoundAboveCenterLine() {
-		assertEquals("SPOCK",diagonallyDescendingAboveWord.get().getWord());
-	}
-	@Test
-	public void whenSearchingDiagonallyDescengingAndWordFoundBelowCenterLine() {
-		assertEquals("RIGQB",diagonallyDescendingBelowWord.get().getWord());
-	}
-	@Test
-	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheFirstColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(2,diagonallyDescendingBelowWord.get().getFirstColumnLetterLocation());
-	}
-	@Test
-	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheLastColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(6,diagonallyDescendingBelowWord.get().getLastColumnLetterLocation());
-	}
-	@Test
-	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheFirstRowPositionOfThatWordOnTheGrid() {
-		assertEquals(7,diagonallyDescendingBelowWord.get().getFirstRowLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardOnOrBelowCenterLineReturnTheLastLetterRowPositionOfThatWordOnTheGrid(){
+		assertEquals(0,wordFoundDiagonallyDescendingBackwardBelowCenterLine.get().getLastLetterRowPosition());
 	}
 	
 	@Test
-	public void whenWordIsFoundBelowCenterLineBySearchingDiagonallyDescengingReturnTheLastRowPositionOfThatWordOnTheGrid() {
-		assertEquals(11,diagonallyDescendingBelowWord.get().getLastRowLetterLocation());
+	public void whenSearchingDiagonallyDescendingBelowCenterLineAWordShouldBeFound() {
+		assertEquals("RIGQB",wordFoundDiagonallyDescendingBelowCenterLine.get().getWord());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBelowCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(2,wordFoundDiagonallyDescendingBelowCenterLine.get().getFirstLetterColumnPosition());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBelowCenterLineReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(6,wordFoundDiagonallyDescendingBelowCenterLine.get().getLastLetterColumnPosition());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBelowCenterLineReturnTheFirstRowLetterPositionOfThatWordOnTheGrid() {
+		assertEquals(7,wordFoundDiagonallyDescendingBelowCenterLine.get().getFirstLetterRowPosition());
 	}
 	
 	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheFirstColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(2,diagonallyDescendingAboveWord.get().getFirstColumnLetterLocation());
-	}
-	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheLastColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(6,diagonallyDescendingAboveWord.get().getLastColumnLetterLocation());
-	}
-	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheFirstRowPositionOfThatWordOnTheGrid() {
-		assertEquals(1,diagonallyDescendingAboveWord.get().getFirstRowLetterLocation());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingBelowCenterLineReturnTheLastRowLetterPositionOfThatWordOnTheGrid() {
+		assertEquals(11,wordFoundDiagonallyDescendingBelowCenterLine.get().getLastLetterRowPosition());
 	}
 	
 	@Test
-	public void whenWordIsFoundAboveCenterLineBySearchingDiagonallyDescengingReturnTheLastRowPositionOfThatWordOnTheGrid() {
-		assertEquals(5,diagonallyDescendingAboveWord.get().getLastRowLetterLocation());
+	public void whenSearchingDiagonallyDescendingOnOrAboveCenterLineAWordShouldBeFound() {
+		assertEquals("SPOCK",wordFoundDiagonallyDescendingAboveCenterLine.get().getWord());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyDescendingOnOrAboveCenterLineTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(2,wordFoundDiagonallyDescendingAboveCenterLine.get().getFirstLetterColumnPosition());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyDescendingOnOrAboveCenterLineReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(6,wordFoundDiagonallyDescendingAboveCenterLine.get().getLastLetterColumnPosition());
+	}
+	@Test
+	public void whenWordIsFoundDiagonallyDescendingOnOrAboveCenterLineReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(1,wordFoundDiagonallyDescendingAboveCenterLine.get().getFirstLetterRowPosition());
 	}
 	
 	@Test
-	public void whenSearchingHorizontallyAndWordOnTheXAxisFoundIfItExists() {
-		assertEquals("SCOTTY",horizontalWord.get().getWord());
+	public void whenWordIsFoundBySearchingDiagonallyDescendingOnOrAboveCenterLineReturnTheLastLertterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(5,wordFoundDiagonallyDescendingAboveCenterLine.get().getLastLetterRowPosition());
+	}
+
+	@Test
+	public void whenSearchingHorizontallyAWordShouldBeFound() {
+		assertEquals("SCOTTY",wordFounHorizontally.get().getWord());
 	}
 	
 	@Test
 	public void whenWordIsFoundBySearchingHorizontallyReturnTheRowPositionOfThatWordOnTheGrid() {
-		assertEquals(5,horizontalWord.get().getFirstRowLetterLocation());
-		assertEquals(5,horizontalWord.get().getLastRowLetterLocation());
+		assertEquals(5,wordFounHorizontally.get().getFirstLetterRowPosition());
+		assertEquals(5,wordFounHorizontally.get().getLastLetterRowPosition());
 
 	}
 	@Test
-	public void whenWordIsFoundBySearchingHorizontallyReturnTheFirstColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(0,horizontalWord.get().getFirstColumnLetterLocation());
+	public void whenWordIsFoundBySearchingHorizontallyReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(0,wordFounHorizontally.get().getFirstLetterColumnPosition());
 	}
 	@Test
-	public void whenWordIsFoundBySearchingHorizontallyReturnTheLastColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(5,horizontalWord.get().getLastColumnLetterLocation());
+	public void whenWordIsFoundBySearchingHorizontallyReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(5,wordFounHorizontally.get().getLastLetterColumnPosition());
 	}
 
 	@Test
-	public void whenSearchingHorizontallyAndWordOnTheXAxisFoundIfItExistsInABackwardDirection() {
-		assertEquals("KIRK",reverseHorizontalWord.get().getWord());
+	public void whenSearchingHorizontallyBackwardAWordShouldBeFound() {
+		assertEquals("KIRK",wordFoundHorizonallyReverse.get().getWord());
 	}
 	
 	@Test
 	public void whenWordIsFoundBySearchingHorizontallyBackwardReturnTheRowPositionOfThatWordOnTheGrid() {
-		assertEquals(7,reverseHorizontalWord.get().getFirstRowLetterLocation());
-		assertEquals(7,reverseHorizontalWord.get().getLastRowLetterLocation());
+		assertEquals(7,wordFoundHorizonallyReverse.get().getFirstLetterRowPosition());
+		assertEquals(7,wordFoundHorizonallyReverse.get().getLastLetterRowPosition());
 
 	}
 	@Test
-	public void whenWordIsFoundBySearchingHorizontallyBackwordReturnTheFirstColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(4,reverseHorizontalWord.get().getFirstColumnLetterLocation());
+	public void whenWordIsFoundBySearchingHorizontallyBackwordReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(4,wordFoundHorizonallyReverse.get().getFirstLetterColumnPosition());
 	}
 	@Test
-	public void whenWordIsFoundBySearchingHorizontallyBackWardReturnTheLastColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(1,reverseHorizontalWord.get().getLastColumnLetterLocation());
+	public void whenWordIsFoundBySearchingHorizontallyBackWardReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(1,wordFoundHorizonallyReverse.get().getLastLetterColumnPosition());
 	}
 	
 	@Test
-	public void whenSearchingVerticallAndWordOnTheYAxisFoundIfItExistsInDownWordDirection() {
-		assertEquals("BONES",verticleWord.get().getWord());
+	public void whenSearchingVerticallAWordShouldBeFound() {
+		assertEquals("BONES",wordFoundVertically.get().getWord());
 	}
 	
 
 	@Test
-	public void whenWordIsFoundBySearchingVerticallyReturnTheFirstRowPositionOfThatWordOnTheGrid() {
-		assertEquals(6,verticleWord.get().getFirstRowLetterLocation());
+	public void whenWordIsFoundBySearchingVerticallyReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(6,wordFoundVertically.get().getFirstLetterRowPosition());
 	}
 	@Test
-	public void whenWordIsFoundBySearchingVerticallyReturnTheLastRowPositionOfThatWordOnTheGrid() {
-		assertEquals(10,verticleWord.get().getLastRowLetterLocation());
+	public void whenWordIsFoundBySearchingVerticallyReturnTheLastLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(10,wordFoundVertically.get().getLastLetterRowPosition());
 	}
 	@Test
-	public void whenWordIsFoundBySearchingVerticallyReturnTheColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(0,verticleWord.get().getFirstColumnLetterLocation());		
-		assertEquals(0,verticleWord.get().getLastColumnLetterLocation());
+	public void whenWordIsFoundBySearchingVerticallyReturnThColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(0,wordFoundVertically.get().getFirstLetterColumnPosition());		
+		assertEquals(0,wordFoundVertically.get().getLastLetterColumnPosition());
 
 	}
 	
 	@Test
-	public void whenSearchingVerticallyAndWordOnTheYAxisFoundIfItExistsInUpwardDirection() {
-		assertEquals("KHAN",reverseVerticleWord.get().getWord());
+	public void whenSearchingVerticallyAWordShouldFoud() {
+		assertEquals("KHAN",wordFoundVerticallyReverse.get().getWord());
 	}
 	@Test
-	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheFirstRowPositionOfThatWordOnTheGrid() {
-		assertEquals(9,reverseVerticleWord.get().getFirstRowLetterLocation());
+	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(9,wordFoundVerticallyReverse.get().getFirstLetterRowPosition());
 	}
 	@Test
-	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheLastRowPositionOfThatWordOnTheGrid() {
-		assertEquals(6,reverseVerticleWord.get().getLastRowLetterLocation());
+	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheLastLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(6,wordFoundVerticallyReverse.get().getLastLetterRowPosition());
 	}
 	@Test
-	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheColumnPositionOfThatWordOnTheGrid() {
-		assertEquals(5,reverseVerticleWord.get().getFirstColumnLetterLocation());		
-		assertEquals(5,reverseVerticleWord.get().getLastColumnLetterLocation());
+	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheColumnLteerPositionOfThatWordOnTheGrid() {
+		assertEquals(5,wordFoundVerticallyReverse.get().getFirstLetterColumnPosition());		
+		assertEquals(5,wordFoundVerticallyReverse.get().getLastLetterColumnPosition());
 
 	}
 	

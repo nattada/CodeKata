@@ -19,37 +19,37 @@ public class GridTest {
 	}
 	
 	@Test
-	public void whenValueOfRowAndColumnAreZeroAndArePassedToGetLettersDiagonallyDescendingReturnsAllLettersWhereRowIndexIsEqualToColumnIndexStartingFromTheLeftTopCorner() {
+	public void whenBothRowIndexAndColumnIndexAreZeroPassToGetLettersDiagonallyDescendingReturnLettersDiagonallyDescendingFromThatPoint() {
 		String [] letters =puzzle.getLettersDiagonallyDescending(0, 0);
 		assertEquals("ULUSGYEMECEOZXB",Arrays.stream(letters).reduce("", String::concat));
 	}
 	
 	@Test
-	public void whenValueOfRowIsGreaterThanColumnArePassedToGetLettersDiagonallyDescendingReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+	public void whenRowIndexIsNonZeroAndColumnIndexIsZeroPassToGetLettersDiagonallyDescendingReturnLettersDiagonallyDescendingFromThatPoint() {
 		String [] letters =puzzle.getLettersDiagonallyDescending(4, 0);
 		assertEquals("ACQIYKIECBC",Arrays.stream(letters).reduce("", String::concat));
 	}
 	@Test
-	public void whenValueOfRowIsLessThanColumnArePassedToGetLettersDiagonallyDescendingThenReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+	public void whenRowIndexIsZeroAndColumnIndexIsNonZeroPassToGetLettersDiagonallyDescendingReturnLettersDiagonallyDescendingFromThatPoint() {
 		String [] letters =puzzle.getLettersDiagonallyDescending(0, 3);
 		assertEquals("HKPQRRVFRYWK",Arrays.stream(letters).reduce("", String::concat));
 	}
 	
 	@Test
-	public void whenValueOfRowAndColumnAreSizeOfTheGridAndPassedToGetLettersDiagonallyAscendingReturnsAllLettersAlongTheDiagnolLineStartingFromTheLeftBottomCorner() {
-		String [] letters =puzzle.getLettersDiagonallyAscending(puzzle.getNumRow(), puzzle.getNumColumn());
+	public void whenBothRowIndexAndColmnIndexAreTheSizeOfTheGridPassToGetLettersDiagonallyAscendingReturnLettersDiagonallyAscendingFromThatPoint() {
+		String [] letters =puzzle.getLettersDiagonallyAscending(puzzle.getNumRow()-1,0);
 		assertEquals("KZYBMKQMEEHKXYE", Arrays.stream(letters).reduce("", String::concat));
 	}
 	@Test
-	public void whenValueOfRowIsGreaterThanColumnArePassedToGetLettersDiagonallyAscendingReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
+	public void whenColumnIndexIsZeroPassToGetLettersDiagonallyAscendingReturnLettersDiagonallyAscendingFromThatPoint() {
 		String [] letters =puzzle.getLettersDiagonallyAscending(11, 0);
 		assertEquals("TJZIKNKRTHGO",Arrays.stream(letters).reduce("", String::concat));
 	}
 	
 	@Test
-	public void whenValueOfRowIsLessThanColumnArePassedToGetLettersDiagonallyAscendingThenReturnsAllLettersWhereRowIndexIsOneLessToColumnIndexFromTheStartingIndex() {
-		String [] letters =puzzle.getLettersDiagonallyAscending(0, 5);
-		assertEquals("SYJPKL",Arrays.stream(letters).reduce("", String::concat));
+	public void whenIsNonZeroPassToGetLettersDiagonallyAscendingReturnLettersDiagonallyAscendingFromThatPoint() {
+		String [] letters =puzzle.getLettersDiagonallyAscending(14, 8);
+		assertEquals("DBYOKAS",Arrays.stream(letters).reduce("", String::concat));
 	}
 
 }

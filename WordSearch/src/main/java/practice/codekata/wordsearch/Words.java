@@ -4,10 +4,10 @@ public class Words {
 
 	private String word;
 	private boolean found;
-	private int fistColumnLetterLocation;
-	private int lastColumnLetterLocation;
-	private int firstRowLetterLocation;
-	private int lastRowLetterLocation;
+	private int firstLetterColumnPosition;
+	private int lastLetterColumnPosition;
+	private int firstLetterRowPosition;
+	private int lastLetterRowPosition;
 
 	public Words(String text) {
 		this.word = text;
@@ -29,43 +29,43 @@ public class Words {
 		this.found = found;
 	}
 
-	public int getFirstColumnLetterLocation() {
-		return fistColumnLetterLocation;
+	public int getFirstLetterColumnPosition() {
+		return firstLetterColumnPosition;
 	}
 
-	public void setFistColumnLetterLocation(int fistColumnLetterLocation) {
-		this.fistColumnLetterLocation = fistColumnLetterLocation;
+	public void setFirstLetterColumnPosition(int firstLetterColumnPosition) {
+		this.firstLetterColumnPosition = firstLetterColumnPosition;
 	}
 
-	public int getLastColumnLetterLocation() {
-		return lastColumnLetterLocation;
+	public int getLastLetterColumnPosition() {
+		return lastLetterColumnPosition;
 	}
 
-	public void setLastColumnLetterLocation(int lastColumnLetterLocation) {
-		this.lastColumnLetterLocation = lastColumnLetterLocation;
+	public void setLastLetterColumnPosition(int lastLetterColumnPosition) {
+		this.lastLetterColumnPosition = lastLetterColumnPosition;
 	}
 
-	public void setFirstRowLetterLocation(int firstRowLetterLocation) {
-		this.firstRowLetterLocation = firstRowLetterLocation;
+	public void setFirstLetterRowPosition(int firstLetterRowPosition) {
+		this.firstLetterRowPosition = firstLetterRowPosition;
 	}
 
-	public void setLastRowLetterLocation(int lastRowLetterLocation) {
-		this.lastRowLetterLocation = lastRowLetterLocation;
+	public void setLastLetterRowPosition(int lastLetterRowPosition) {
+		this.lastLetterRowPosition = lastLetterRowPosition;
 	}
 
-	public int getFirstRowLetterLocation() {
-		return firstRowLetterLocation;
+	public int getFirstLetterRowPosition() {
+		return firstLetterRowPosition;
 	}
 
-	public int getLastRowLetterLocation() {
-		return lastRowLetterLocation;
+	public int getLastLetterRowPosition() {
+		return lastLetterRowPosition;
 	}
 
 	public void updateWordState(int startColPos, int endColPos, int startRowPos, int endRowPos) {
-		this.setFistColumnLetterLocation(startColPos);
-		this.setLastColumnLetterLocation(endColPos);
-		this.setFirstRowLetterLocation(startRowPos);
-		this.setLastRowLetterLocation(endRowPos);
+		this.setFirstLetterColumnPosition(startColPos);
+		this.setLastLetterColumnPosition(endColPos);
+		this.setFirstLetterRowPosition(startRowPos);
+		this.setLastLetterRowPosition(endRowPos);
 		this.setFound(true);
 	}
 
