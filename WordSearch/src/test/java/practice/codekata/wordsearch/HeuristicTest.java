@@ -10,6 +10,8 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
+import practice.codekata.wordsearch.Words.Direction;
+
 public class HeuristicTest {
 	public Grid puzzle;
 	public List<Words> words;
@@ -88,6 +90,10 @@ public class HeuristicTest {
 		assertEquals("UHURA",wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getWord());
 	}
 	@Test
+	public void whenAWordIsFoundBySearchingDiagonallyAscendingBackwardTheDirectionOfTheWordShouldSetToDiagonallyAscendingBackward() {
+		assertEquals(Direction.DIAGONALLYASCENDINGBACKWARD,wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getWordDirection());
+	}
+	@Test
 	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardAboveCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
 		assertEquals(4, wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getFirstLetterColumnPosition());
 	}
@@ -130,6 +136,10 @@ public class HeuristicTest {
 	@Test
 	public void whenSearchingDiagonallyAscendingAboveCenterLineAWordShouldBeFound() {
 		assertEquals("OPZI",wordFoundDiagonallyAscendingAboveCenterLine.get().getWord());
+	}
+	@Test
+	public void whenAWordIsFoundBySearchingDiagonallyAscendingTheDirectionOfTheWordShouldSetToDiagonallyAscending() {
+		assertEquals(Direction.DIAGONALLYASCENDING,wordFoundDiagonallyAscendingAboveCenterLine.get().getWordDirection());
 	}
 	@Test
 	public void whenWordIsFoundBySearchingDiagonallyAscendingAboveCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
@@ -180,6 +190,10 @@ public class HeuristicTest {
 	}
 	
 	@Test
+	public void whenAWordIsFoundBySearchingDiagonallyDescendingBackwardTheDirectionOfTheWordShouldSetToDiagonallyDescendingBackward() {
+		assertEquals(Direction.DIAGONALLYDESCENDINGBACKWARD,wordFoundDiagonallyDescendingBackwardAboveCenterLine.get().getWordDirection());
+	}
+	@Test
 	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardAboveCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
 		assertEquals(13, wordFoundDiagonallyDescendingBackwardAboveCenterLine.get().getFirstLetterColumnPosition());
 	}
@@ -199,6 +213,7 @@ public class HeuristicTest {
 	public void whenSearchingDiagonallyDescendingBackwardOnOrBelowCenterLineAWordShouldBeFound() {
 		assertEquals("SULU",wordFoundDiagonallyDescendingBackwardBelowCenterLine.get().getWord());
 	}
+	
 	@Test
 	public void whenWordIsFoundBySearchingDiagonallyDescendingBackwardOnOrBelowCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid(){
 		assertEquals(3,wordFoundDiagonallyDescendingBackwardBelowCenterLine.get().getFirstLetterColumnPosition());
@@ -243,6 +258,10 @@ public class HeuristicTest {
 		assertEquals("SPOCK",wordFoundDiagonallyDescendingAboveCenterLine.get().getWord());
 	}
 	@Test
+	public void whenAWordIsFoundBySearchingDiagonallyDescendingTheDirectionOfTheWordShouldSetToDiagonallyDescending() {
+		assertEquals(Direction.DIAGONALLYDESCENDING,wordFoundDiagonallyDescendingAboveCenterLine.get().getWordDirection());
+	}
+	@Test
 	public void whenWordIsFoundBySearchingDiagonallyDescendingOnOrAboveCenterLineTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
 		assertEquals(2,wordFoundDiagonallyDescendingAboveCenterLine.get().getFirstLetterColumnPosition());
 	}
@@ -264,6 +283,10 @@ public class HeuristicTest {
 	public void whenSearchingHorizontallyAWordShouldBeFound() {
 		assertEquals("SCOTTY",wordFounHorizontally.get().getWord());
 	}
+	@Test
+	public void whenAWordIsFoundBySearchingHorizontallyTheDirectionOfTheWordShouldSetToHorizontally() {
+		assertEquals(Direction.HORIZONTALLY,wordFounHorizontally.get().getWordDirection());
+	}
 	
 	@Test
 	public void whenWordIsFoundBySearchingHorizontallyReturnTheRowPositionOfThatWordOnTheGrid() {
@@ -284,6 +307,11 @@ public class HeuristicTest {
 	public void whenSearchingHorizontallyBackwardAWordShouldBeFound() {
 		assertEquals("KIRK",wordFoundHorizonallyReverse.get().getWord());
 	}
+	@Test
+	public void whenAWordIsFoundBySearchingHorizontallyBackwardTheDirectionOfTheWordShouldSetToHorizontallyBackward() {
+		assertEquals(Direction.HORIZONTALLYBACKWARD,wordFoundHorizonallyReverse.get().getWordDirection());
+	}
+	
 	
 	@Test
 	public void whenWordIsFoundBySearchingHorizontallyBackwardReturnTheRowPositionOfThatWordOnTheGrid() {
@@ -304,7 +332,10 @@ public class HeuristicTest {
 	public void whenSearchingVerticallAWordShouldBeFound() {
 		assertEquals("BONES",wordFoundVertically.get().getWord());
 	}
-	
+	@Test
+	public void whenAWordIsFoundBySearchingVerticallTheDirectionOfTheWordShouldSetToVerticall() {
+		assertEquals(Direction.VERTICALLY,wordFoundVertically.get().getWordDirection());
+	}
 
 	@Test
 	public void whenWordIsFoundBySearchingVerticallyReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
@@ -324,6 +355,10 @@ public class HeuristicTest {
 	@Test
 	public void whenSearchingVerticallyAWordShouldFoud() {
 		assertEquals("KHAN",wordFoundVerticallyReverse.get().getWord());
+	}
+	@Test
+	public void whenAWordIsFoundBySearchingVerticallBackwardTheDirectionOfTheWordShouldSetToVerticallBackward() {
+		assertEquals(Direction.VERTICALLYBACKWARD,wordFoundVerticallyReverse.get().getWordDirection());
 	}
 	@Test
 	public void whenWordIsFoundBySearchingVerticallyUpwardReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {

@@ -8,12 +8,17 @@ public class Words {
 	private int lastLetterColumnPosition;
 	private int firstLetterRowPosition;
 	private int lastLetterRowPosition;
-	private enum direction {HORIZONTALLY,VERTICALLY,HORIZONTALLYBACKWARD,VERTICALLYBACKWORD,
-		DIAGONALLYDESCENDING,DIAGONALLYDESCENDINGBACKWARD,DIAGONALLYDASCENDING,DIAGONALLYASCENDINGBACKWARD};
+	private Direction direction;
+	public enum Direction {HORIZONTALLY,VERTICALLY,HORIZONTALLYBACKWARD,VERTICALLYBACKWARD,
+		DIAGONALLYDESCENDING,DIAGONALLYDESCENDINGBACKWARD,DIAGONALLYASCENDING,DIAGONALLYASCENDINGBACKWARD};
 
 	public Words(String text) {
 		this.word = text;
 		this.found = false;
+	}
+	
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 	public String getWord() {
 		return word;
@@ -61,6 +66,9 @@ public class Words {
 
 	public int getLastLetterRowPosition() {
 		return lastLetterRowPosition;
+	}
+	public Direction getWordDirection() {
+		return direction;
 	}
 
 	public void updateWordState(int startColPos, int endColPos, int startRowPos, int endRowPos) {

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import practice.codekata.wordsearch.Words.Direction;
+
 public class Heuristic {
 	private List<Words> wordsLeftToSearch;
 	private Grid grid;
@@ -34,10 +36,13 @@ public class Heuristic {
 				if (colLetter.contains(strWord)) {
 					word.updateWordState(col, col, colLetter.indexOf(strWord, 0),
 							strWord.length() - 1 + colLetter.indexOf(strWord, 0));
+					word.setDirection(Direction.VERTICALLY);
+
 				}
 				if (reverse.contains(strWord)) {
 					int startIndex = reverse.length() - 1 - reverse.indexOf(strWord, 0);
 					word.updateWordState(col, col, startIndex, startIndex - strWord.length() + 1);
+					word.setDirection(Direction.VERTICALLYBACKWARD);
 				}
 
 			}
@@ -56,10 +61,14 @@ public class Heuristic {
 				if (rowLetters.contains(strWord)) {
 					word.updateWordState(rowLetters.indexOf(strWord, 0),
 							strWord.length() - 1 + rowLetters.indexOf(strWord, 0), row, row);
+					word.setDirection(Direction.HORIZONTALLY);
+
 				}
 				if (reverse.contains(strWord)) {
 					int startIndex = reverse.length() - 1 - reverse.indexOf(strWord, 0);
 					word.updateWordState(startIndex, startIndex - strWord.length() + 1, row, row);
+					word.setDirection(Direction.HORIZONTALLYBACKWARD);
+
 				}
 			}
 		}
@@ -76,12 +85,15 @@ public class Heuristic {
 					int firstLetterStartIndex = letters.indexOf(strWord, 0);
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
 							row + firstLetterStartIndex, row + firstLetterStartIndex + strWord.length() - 1);
+					word.setDirection(Direction.DIAGONALLYDESCENDING);
+
 
 				}
 				if (reverse.contains(strWord)) {
 					int firstLetterStartIndex = reverse.length() - 1 - reverse.indexOf(strWord, 0);
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex - (strWord.length() - 1),
 							firstLetterStartIndex + row, firstLetterStartIndex + row - (strWord.length() - 1));
+					word.setDirection(Direction.DIAGONALLYDESCENDINGBACKWARD);
 				}
 			}
 		}
@@ -96,6 +108,8 @@ public class Heuristic {
 					word.updateWordState(col + firstLetterStartIndex,
 							col + firstLetterStartIndex + (strWord.length() - 1), firstLetterStartIndex,
 							firstLetterStartIndex + (strWord.length() - 1));
+					word.setDirection(Direction.DIAGONALLYDESCENDING);
+
 				}
 				if (reverse.contains(strWord)) {
 					int firstLetterStartIndex = reverse.indexOf(strWord, 0);
@@ -103,6 +117,8 @@ public class Heuristic {
 					int firstLetterRowPos = (reverse.length() - 1) - firstLetterStartIndex;
 					word.updateWordState(firstLetterColPos, firstLetterColPos - (strWord.length() - 1),
 							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
+					word.setDirection(Direction.DIAGONALLYDESCENDINGBACKWARD);
+
 				}
 			}
 		}
@@ -121,6 +137,8 @@ public class Heuristic {
 					int firstLetterRowPos = row - firstLetterStartIndex;
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
 							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
+					word.setDirection(Direction.DIAGONALLYASCENDING);
+
 				}
 
 				if (reverse.contains(strWord)) {
@@ -128,6 +146,8 @@ public class Heuristic {
 					int lastLetterIndex = firstLetterStartIndex + (strWord.length() - 1);
 					word.updateWordState(row - firstLetterStartIndex, row - lastLetterIndex,
 							lastLetterIndex - (strWord.length() - 1), lastLetterIndex);
+					word.setDirection(Direction.DIAGONALLYASCENDINGBACKWARD);
+
 				}
 			}
 		}
@@ -144,12 +164,16 @@ public class Heuristic {
 					int firstLetterRowPos = (grid.getNumRow() - 1) - firstLetterStartIndex;
 					word.updateWordState(firstLetterColPos, firstLetterColPos + (strWord.length() - 1),
 							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
+					word.setDirection(Direction.DIAGONALLYASCENDING);
+
 				}
 				if (reverse.contains(strWord)) {
 					int firstLetterStartIndex = reverse.indexOf(strWord, 0);
 					int lastLetterIndex = firstLetterStartIndex + (strWord.length() - 1);
 					word.updateWordState(lastLetterIndex+(strWord.length() - 1) , lastLetterIndex, col + firstLetterStartIndex, 
 							col + firstLetterStartIndex  + (strWord.length() -1));
+					word.setDirection(Direction.DIAGONALLYASCENDINGBACKWARD);
+
 				}
 			}
 		}

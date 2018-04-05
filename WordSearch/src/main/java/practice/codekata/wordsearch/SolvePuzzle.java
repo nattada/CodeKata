@@ -22,8 +22,8 @@ public class SolvePuzzle {
 	public String search() {
 		String result;
 		result = buildPuzzle();
-		List<Words> wordFound = heuristic.solvePuzzle(wordsNeededSearch, puzzleGrid);
-		printingResults(wordFound);
+		//List<Words> wordFound = heuristic.solvePuzzle(wordsNeededSearch, puzzleGrid);
+		//printingResults(wordFound);
 
 		return result;// continue with the search
 	}
@@ -39,12 +39,13 @@ public class SolvePuzzle {
 		
 		if (word.getFirstLetterRowPosition() == word.getLastLetterRowPosition()) {
 			// horizontal
-			String position="t";
-			int column =  word.getFirstLetterRowPosition();
+			String position="";
+			int column =  word.getFirstLetterColumnPosition();
 			int row = word.getFirstLetterRowPosition();
 			for(int i = 0; i<word.getWord().length(); i++) {
-				String pos = (" (" + row + "," +  column + ") ");
-				position.concat(pos);
+				String pos = " (" + column + "," +  row + ") ";
+				position += pos;
+				column++;
 			}
 			return position;
 		}
