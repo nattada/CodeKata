@@ -23,10 +23,8 @@ public class HeuristicTest {
 	public Optional<Words> wordFoundDiagonallyDescendingBackwardBelowCenterLine;
 	public Optional<Words> wordFoundDiagonallyAscendingAboveCenterLine;
 	public Optional<Words> wordFoundDiagonallyAscendingBelowCenterLine;
-
-
-
-
+	public Optional<Words> wordFoundDiagonallyAscendingBackwardAboveCenterLine;
+	public Optional<Words> wordFoundDiagonallyAscendingBackwardBelowCenterLine;
 
 	@Before
 	public void setUp() {
@@ -47,6 +45,10 @@ public class HeuristicTest {
 		Words ascendingBelowCenterWord = new Words("JEMUP");
 		words.add(ascendingBelowCenterWord);
 		
+
+		Words ascendingBackwordBelowCenterWord = new Words("PUMEJ");
+		words.add(ascendingBackwordBelowCenterWord);
+		
 		wordFoundList = heuristic.solvePuzzle(words, puzzle);
 		wordFounHorizontally = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY") && word.isFound()).findFirst();
 		wordFoundHorizonallyReverse = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK") && word.isFound()).findFirst();
@@ -58,10 +60,23 @@ public class HeuristicTest {
 		wordFoundDiagonallyDescendingBackwardAboveCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("PFPHI") && word.isFound()).findFirst();
 		wordFoundDiagonallyAscendingAboveCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("OPZI") && word.isFound()).findFirst();
 		wordFoundDiagonallyAscendingBelowCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("JEMUP") && word.isFound()).findFirst();
+		wordFoundDiagonallyAscendingBackwardAboveCenterLine = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("UHURA") && word.isFound()).findFirst();
+		wordFoundDiagonallyAscendingBackwardBelowCenterLine  = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("PUMEJ") && word.isFound()).findFirst();
+
 
 		
 	}
 	//Center line is a diagonally line from bottom left corner of the grid to top right corner
+	
+	@Test
+	public void whenSearchingDiagonallyAscendingBackwardAboveCenterLineAWordShouldBeFound() {
+		assertEquals("UHURA",wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getWord());
+	}
+	
+	@Test
+	public void whenSearchingDiagonallyAscendingBackwardBelowCenterLineAWordShouldBeFound() {
+		assertEquals("PUMEJ",wordFoundDiagonallyAscendingBackwardBelowCenterLine.get().getWord());
+	}
 	@Test
 	public void whenSearchingDiagonallyAscendingAboveCenterLineAWordShouldBeFound() {
 		assertEquals("OPZI",wordFoundDiagonallyAscendingAboveCenterLine.get().getWord());

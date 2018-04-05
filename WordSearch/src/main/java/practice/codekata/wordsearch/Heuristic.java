@@ -112,6 +112,8 @@ public class Heuristic {
 	private void findWordsDiagonallyAscending() {
 		for (int row = grid.getNumRow() - 1; row > 0; row--) {
 			String letters = Arrays.stream((grid.getLettersDiagonallyAscending(row, 0))).reduce("", String::concat);
+			String reverse = reverseString(letters);
+
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
 				if (letters.contains(strWord)) {
@@ -120,12 +122,17 @@ public class Heuristic {
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
 							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
 				}
+			
+				if (reverse.contains(strWord)) {
+					word.updateWordState(0,0,0,0);
+				}
 			}
 		}
 
 		for (int col = 1; col < grid.getNumColumn(); col++) {
 			String letters = Arrays.stream((grid.getLettersDiagonallyAscending(grid.getNumRow() - 1, col))).reduce("",
 					String::concat);
+			String reverse = reverseString(letters);
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
 				if (letters.contains(strWord)) {
@@ -134,6 +141,9 @@ public class Heuristic {
 					int firstLetterRowPos = (grid.getNumRow() -1)-firstLetterStartIndex;
 					word.updateWordState(firstLetterColPos, firstLetterColPos + (strWord.length() - 1),
 							firstLetterRowPos, firstLetterRowPos- (strWord.length() - 1));
+				}
+				if (reverse.contains(strWord)) {
+					word.updateWordState(0,0,0,0);
 				}
 			}
 		}
