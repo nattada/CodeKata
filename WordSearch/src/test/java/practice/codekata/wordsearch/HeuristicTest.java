@@ -1,6 +1,8 @@
 package practice.codekata.wordsearch;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +51,7 @@ public class HeuristicTest {
 		Words ascendingBackwordBelowCenterWord = new Words("PUMEJ");
 		words.add(ascendingBackwordBelowCenterWord);
 		
+		
 		wordFoundList = heuristic.solvePuzzle(words, puzzle);
 		wordFounHorizontally = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("SCOTTY") && word.isFound()).findFirst();
 		wordFoundHorizonallyReverse = wordFoundList.stream().filter(word -> word.getWord().equalsIgnoreCase("KIRK") && word.isFound()).findFirst();
@@ -66,6 +69,19 @@ public class HeuristicTest {
 
 		
 	}
+	@Test
+	public void whenAllTheSearchIsCompletedAllTheWordsInTheListShouldSetFoundToTrue() {
+		assertTrue(words.stream().allMatch(word->word.isFound()));
+	}
+	
+	@Test
+	public void whenAWordCannotBeFoundItShouldReturnFalseThrowsAnError() {
+		Words unfoundWorld = new Words("worldCantBeFound");
+		words.add(unfoundWorld);
+		assertFalse(words.stream().allMatch(word->word.isFound()));
+	}
+	
+	
 	//Center line is a diagonally line from bottom left corner of the grid to top right corner
 	
 	@Test

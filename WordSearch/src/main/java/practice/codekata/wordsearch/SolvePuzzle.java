@@ -12,6 +12,7 @@ public class SolvePuzzle {
 	private String inputFile;
 	private List<Words> wordsNeededSearch;
 	private Grid puzzleGrid;
+	public Heuristic heuristic;
 
 	public SolvePuzzle(String inputFile) {
 		this.inputFile = inputFile;
@@ -21,6 +22,8 @@ public class SolvePuzzle {
 		String result;
 		
 			result = buildPuzzle();
+			//List<Words> wordFound = heuristic.solvePuzzle(wordsNeededSearch, puzzleGrid);
+			
 		
 		return result;// continue with the search
 	}
