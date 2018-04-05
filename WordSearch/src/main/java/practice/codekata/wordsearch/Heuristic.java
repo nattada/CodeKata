@@ -122,9 +122,12 @@ public class Heuristic {
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
 							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
 				}
-			
+
 				if (reverse.contains(strWord)) {
-					word.updateWordState(0,0,0,0);
+					int firstLetterStartIndex = reverse.indexOf(strWord, 0);
+					int lastLetterIndex = firstLetterStartIndex + (strWord.length() - 1);
+					word.updateWordState(row - firstLetterStartIndex, row - lastLetterIndex,
+							lastLetterIndex - (strWord.length() - 1), lastLetterIndex);
 				}
 			}
 		}
@@ -138,12 +141,15 @@ public class Heuristic {
 				if (letters.contains(strWord)) {
 					int firstLetterStartIndex = letters.indexOf(strWord, 0);
 					int firstLetterColPos = col + firstLetterStartIndex;
-					int firstLetterRowPos = (grid.getNumRow() -1)-firstLetterStartIndex;
+					int firstLetterRowPos = (grid.getNumRow() - 1) - firstLetterStartIndex;
 					word.updateWordState(firstLetterColPos, firstLetterColPos + (strWord.length() - 1),
-							firstLetterRowPos, firstLetterRowPos- (strWord.length() - 1));
+							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
 				}
 				if (reverse.contains(strWord)) {
-					word.updateWordState(0,0,0,0);
+					int firstLetterStartIndex = reverse.indexOf(strWord, 0);
+					int lastLetterIndex = firstLetterStartIndex + (strWord.length() - 1);
+					word.updateWordState(lastLetterIndex+(strWord.length() - 1) , lastLetterIndex, col + firstLetterStartIndex, 
+							col + firstLetterStartIndex  + (strWord.length() -1));
 				}
 			}
 		}

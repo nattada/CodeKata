@@ -72,10 +72,45 @@ public class HeuristicTest {
 	public void whenSearchingDiagonallyAscendingBackwardAboveCenterLineAWordShouldBeFound() {
 		assertEquals("UHURA",wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getWord());
 	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardAboveCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(4, wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getFirstLetterColumnPosition());
+	}
+	
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardAboveCenterLineReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(0, wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getLastLetterColumnPosition());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardAboveCenterLineReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(0, wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getFirstLetterRowPosition());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardAboveCenterLineReturnTheLastLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(4, wordFoundDiagonallyAscendingBackwardAboveCenterLine.get().getLastLetterRowPosition());
+	}
 	
 	@Test
 	public void whenSearchingDiagonallyAscendingBackwardBelowCenterLineAWordShouldBeFound() {
 		assertEquals("PUMEJ",wordFoundDiagonallyAscendingBackwardBelowCenterLine.get().getWord());
+	}
+	
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardBelowCenterLineReturnTheFirstLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(11, wordFoundDiagonallyAscendingBackwardBelowCenterLine.get().getFirstLetterColumnPosition());
+	}
+	
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardBelowCCenterLineReturnTheLastLetterColumnPositionOfThatWordOnTheGrid() {
+		assertEquals(7, wordFoundDiagonallyAscendingBackwardBelowCenterLine.get().getLastLetterColumnPosition());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardBelowCCenterLineReturnTheFirstLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(5, wordFoundDiagonallyAscendingBackwardBelowCenterLine.get().getFirstLetterRowPosition());
+	}
+	@Test
+	public void whenWordIsFoundBySearchingDiagonallyAscendingBackwardBelowCCenterLineReturnTheLastLetterRowPositionOfThatWordOnTheGrid() {
+		assertEquals(9, wordFoundDiagonallyAscendingBackwardBelowCenterLine.get().getLastLetterRowPosition());
 	}
 	@Test
 	public void whenSearchingDiagonallyAscendingAboveCenterLineAWordShouldBeFound() {
