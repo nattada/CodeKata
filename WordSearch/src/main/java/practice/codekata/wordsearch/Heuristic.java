@@ -76,11 +76,12 @@ public class Heuristic {
 					int firstLetterStartIndex = letters.indexOf(strWord, 0);
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
 							row + firstLetterStartIndex, row + firstLetterStartIndex + strWord.length() - 1);
+
 				}
 				if (reverse.contains(strWord)) {
 					int firstLetterStartIndex = reverse.length() - 1 - reverse.indexOf(strWord, 0);
 					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex - (strWord.length() - 1),
-							firstLetterStartIndex + row, firstLetterStartIndex + row - (strWord.length() -1));
+							firstLetterStartIndex + row, firstLetterStartIndex + row - (strWord.length() - 1));
 				}
 			}
 		}
@@ -98,23 +99,41 @@ public class Heuristic {
 				}
 				if (reverse.contains(strWord)) {
 					int firstLetterStartIndex = reverse.indexOf(strWord, 0);
-					int firstLetterColPos = col + reverse.length()-1 - firstLetterStartIndex;
-					int firstLetterRowPos = (reverse.length() -1)-firstLetterStartIndex;
-					word.updateWordState(firstLetterColPos,  firstLetterColPos -(strWord.length() -1)
-							,firstLetterRowPos,firstLetterRowPos - (strWord.length() -1));
+					int firstLetterColPos = col + reverse.length() - 1 - firstLetterStartIndex;
+					int firstLetterRowPos = (reverse.length() - 1) - firstLetterStartIndex;
+					word.updateWordState(firstLetterColPos, firstLetterColPos - (strWord.length() - 1),
+							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
 				}
 			}
 		}
 
 	}
-	
+
 	private void findWordsDiagonallyAscending() {
-		for (int row = grid.getNumRow()-1; row > 0; row--) {
+		for (int row = grid.getNumRow() - 1; row > 0; row--) {
 			String letters = Arrays.stream((grid.getLettersDiagonallyAscending(row, 0))).reduce("", String::concat);
 			for (Words word : getWordsNotFound()) {
 				String strWord = word.getWord();
 				if (letters.contains(strWord)) {
-					word.updateWordState(0,0,0,0);
+					int firstLetterStartIndex = letters.indexOf(strWord, 0);
+					int firstLetterRowPos = row - firstLetterStartIndex;
+					word.updateWordState(firstLetterStartIndex, firstLetterStartIndex + (strWord.length() - 1),
+							firstLetterRowPos, firstLetterRowPos - (strWord.length() - 1));
+				}
+			}
+		}
+
+		for (int col = 1; col < grid.getNumColumn(); col++) {
+			String letters = Arrays.stream((grid.getLettersDiagonallyAscending(grid.getNumRow() - 1, col))).reduce("",
+					String::concat);
+			for (Words word : getWordsNotFound()) {
+				String strWord = word.getWord();
+				if (letters.contains(strWord)) {
+					int firstLetterStartIndex = letters.indexOf(strWord, 0);
+					int firstLetterColPos = col + firstLetterStartIndex;
+					int firstLetterRowPos = (grid.getNumRow() -1)-firstLetterStartIndex;
+					word.updateWordState(firstLetterColPos, firstLetterColPos + (strWord.length() - 1),
+							firstLetterRowPos, firstLetterRowPos- (strWord.length() - 1));
 				}
 			}
 		}

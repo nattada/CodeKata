@@ -77,7 +77,7 @@ public class Grid {
 			size = row+1;
 
 		} else {
-			size = col- 1;
+			size = getNumColumn()- col;
 		}
 		letters = new String[size];
 		for (int i = 0; i < size; i++) {
