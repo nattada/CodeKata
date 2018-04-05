@@ -16,18 +16,55 @@ public class SolvePuzzle {
 
 	public SolvePuzzle(String inputFile) {
 		this.inputFile = inputFile;
+		heuristic = new Heuristic();
 	}
 
 	public String search() {
 		String result;
-		
-			result = buildPuzzle();
-			//List<Words> wordFound = heuristic.solvePuzzle(wordsNeededSearch, puzzleGrid);
-			
-		
+		result = buildPuzzle();
+		List<Words> wordFound = heuristic.solvePuzzle(wordsNeededSearch, puzzleGrid);
+		printingResults(wordFound);
+
 		return result;// continue with the search
 	}
 
+	private void printingResults(List<Words> wordFound) {
+		for (Words word : wordFound) {
+			System.out.println(word.getWord() + ":" + " " + lettersPosition(word));
+		}
+
+	}
+
+	private String lettersPosition(Words word) {
+		
+		if (word.getFirstLetterRowPosition() == word.getLastLetterRowPosition()) {
+			// horizontal
+			String position="t";
+			int column =  word.getFirstLetterRowPosition();
+			int row = word.getFirstLetterRowPosition();
+			for(int i = 0; i<word.getWord().length(); i++) {
+				String pos = (" (" + row + "," +  column + ") ");
+				position.concat(pos);
+			}
+			return position;
+		}
+		if(word.getFirstLetterColumnPosition() == word.getLastLetterRowPosition()) {
+			//vertical
+			return "";
+		}
+		
+		if (word.getFirstLetterRowPosition() > word.getLastLetterRowPosition()) {
+			// Diagonally Descending
+			return "";
+		}
+		if(word.getFirstLetterColumnPosition() < word.getLastLetterRowPosition()) {
+			//Diagonally Ascending
+			return "";
+		}
+		
+
+		return "";
+	}
 
 	public String buildPuzzle() {
 		try {

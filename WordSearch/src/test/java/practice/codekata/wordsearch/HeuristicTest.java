@@ -68,8 +68,7 @@ public class HeuristicTest {
 
 
 		
-	}
-	@Test
+	}	@Test
 	public void whenAllTheSearchIsCompletedAllTheWordsInTheListShouldSetFoundToTrue() {
 		assertTrue(words.stream().allMatch(word->word.isFound()));
 	}

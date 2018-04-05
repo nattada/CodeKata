@@ -8,6 +8,8 @@ public class Words {
 	private int lastLetterColumnPosition;
 	private int firstLetterRowPosition;
 	private int lastLetterRowPosition;
+	private enum direction {HORIZONTALLY,VERTICALLY,HORIZONTALLYBACKWARD,VERTICALLYBACKWORD,
+		DIAGONALLYDESCENDING,DIAGONALLYDESCENDINGBACKWARD,DIAGONALLYDASCENDING,DIAGONALLYASCENDINGBACKWARD};
 
 	public Words(String text) {
 		this.word = text;
@@ -68,5 +70,5 @@ public class Words {
 		this.setLastLetterRowPosition(endRowPos);
 		this.setFound(true);
 	}
-
+	
 }
