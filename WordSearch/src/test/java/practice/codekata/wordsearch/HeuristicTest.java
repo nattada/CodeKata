@@ -32,12 +32,12 @@ public class HeuristicTest {
 
 	@Before
 	public void setUp() {
-		SolvePuzzle buildPuzzle =new SolvePuzzle("puzzleOne.csv");
-		buildPuzzle.search();
-		puzzle =buildPuzzle.getGridPuzzle();
-		words = buildPuzzle.getWordsNeededSearch();
+		SolvePuzzle solvePuzzle =new SolvePuzzle("puzzleOne.csv");
+		solvePuzzle.buildPuzzle();
+		puzzle =solvePuzzle.getGridPuzzle();
+		words = solvePuzzle.getWordsNeededSearch();
 		heuristic = new Heuristic();
-
+		heuristic.solvePuzzle(words, puzzle);
 		Words descendingBelowCenterLineWord = new Words("RIGQB");
 		words.add(descendingBelowCenterLineWord);
 		Words descendingBackwardBelowCenterLineWord = new Words("PFPHI");

@@ -19,52 +19,117 @@ public class SolvePuzzle {
 		heuristic = new Heuristic();
 	}
 
-	public String search() {
+	public void search() {
 		String result;
 		result = buildPuzzle();
-		//List<Words> wordFound = heuristic.solvePuzzle(wordsNeededSearch, puzzleGrid);
-		//printingResults(wordFound);
+		if (result == "Success") {
+			List<Words> wordFound = heuristic.solvePuzzle(wordsNeededSearch, puzzleGrid);
+			printingResults(wordFound);
+		} else {
+			System.out.println("File not found");
+		}
 
-		return result;// continue with the search
 	}
 
 	private void printingResults(List<Words> wordFound) {
 		for (Words word : wordFound) {
-			System.out.println(word.getWord() + ":" + " " + lettersPosition(word));
+			System.out.print(word.getWord() + ":" + " " + lettersPosition(word));
 		}
 
 	}
 
 	private String lettersPosition(Words word) {
-		
-		if (word.getFirstLetterRowPosition() == word.getLastLetterRowPosition()) {
-			// horizontal
-			String position="";
-			int column =  word.getFirstLetterColumnPosition();
-			int row = word.getFirstLetterRowPosition();
-			for(int i = 0; i<word.getWord().length(); i++) {
-				String pos = " (" + column + "," +  row + ") ";
-				position += pos;
-				column++;
+		String position = "";
+		switch (word.getWordDirection()) {
+		case HORIZONTALLY: {
+			int x = word.getFirstLetterColumnPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + x + "," + word.getFirstLetterRowPosition() + "),";
+				x++;
 			}
-			return position;
-		}
-		if(word.getFirstLetterColumnPosition() == word.getLastLetterRowPosition()) {
-			//vertical
-			return "";
-		}
-		
-		if (word.getFirstLetterRowPosition() > word.getLastLetterRowPosition()) {
-			// Diagonally Descending
-			return "";
-		}
-		if(word.getFirstLetterColumnPosition() < word.getLastLetterRowPosition()) {
-			//Diagonally Ascending
-			return "";
-		}
-		
 
-		return "";
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		case VERTICALLY: {
+			int y = word.getFirstLetterRowPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + word.getFirstLetterColumnPosition() + "," + y + "),";
+				y++;
+			}
+
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		case HORIZONTALLYBACKWARD: {
+			int x = word.getFirstLetterColumnPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + x + "," + word.getFirstLetterRowPosition() + "),";
+				x--;
+			}
+
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		case VERTICALLYBACKWARD: {
+			int y = word.getFirstLetterRowPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + word.getFirstLetterColumnPosition() + "," + y + "),";
+				y--;
+			}
+
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		case DIAGONALLYDESCENDING: {
+			int y = word.getFirstLetterRowPosition();
+			int x = word.getFirstLetterColumnPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + x + "," + y + "),";
+				x++;
+				y++;
+			}
+
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		case DIAGONALLYDESCENDINGBACKWARD: {
+			int y = word.getFirstLetterRowPosition();
+			int x = word.getFirstLetterColumnPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + x + "," + y + "),";
+				x--;
+				y--;
+			}
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		case DIAGONALLYASCENDING: {
+			int y = word.getFirstLetterRowPosition();
+			int x = word.getFirstLetterColumnPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + x + "," + y + "),";
+				x++;
+				y--;
+			}
+
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		case DIAGONALLYASCENDINGBACKWARD: {
+			int y = word.getFirstLetterRowPosition();
+			int x = word.getFirstLetterColumnPosition();
+			for (int i = 0; i < word.getWord().length(); i++) {
+				position += "(" + x + "," + y + "),";
+				x--;
+				y++;
+			}
+			position += "\n";
+			return position.replace(",\n", "\n");
+		}
+		default:
+			return "";
+		}
 	}
 
 	public String buildPuzzle() {

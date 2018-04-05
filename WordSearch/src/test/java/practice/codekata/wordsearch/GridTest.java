@@ -13,9 +13,9 @@ public class GridTest {
 
 	@Before
 	public void setUp() {
-		SolvePuzzle buildPuzzle = new SolvePuzzle("puzzleOne.csv");
-		buildPuzzle.search();
-		puzzle = buildPuzzle.getGridPuzzle();
+		SolvePuzzle solvPuzzle = new SolvePuzzle("puzzleOne.csv");
+		solvPuzzle.buildPuzzle();
+		puzzle = solvPuzzle.getGridPuzzle();
 	}
 	
 	@Test

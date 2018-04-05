@@ -2,6 +2,8 @@ package practice.codekata.wordsearch;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,44 +15,48 @@ public class SolvePuzzleTest {
 	}
 	@Test
 	public void whenSolvePuzzlePassedAFileIsFound() {
-		assertEquals("Success", solve.search());
+		assertEquals("Success",solve.buildPuzzle());
 	}
 	@Test
 	public void whenSolvePuzzlePassedAFileIsNotFound() {
 		SolvePuzzle solve =  new SolvePuzzle("nofilefound.csv");
-		assertEquals("Fail", solve.search());
+		assertEquals("Fail", solve.buildPuzzle());
 	}
 	@Test
 	public void whenSolvePuzzleFoundInputFileReadFirstRowForListOfWords() {
-		solve.search();
-		assertEquals("BONES", solve.getWordsNeededSearch().get(0).getWord());
-		assertEquals("KHAN", solve.getWordsNeededSearch().get(1).getWord());
-		assertEquals("KIRK", solve.getWordsNeededSearch().get(2).getWord());
-		assertEquals("SCOTTY", solve.getWordsNeededSearch().get(3).getWord());
-		assertEquals("SPOCK", solve.getWordsNeededSearch().get(4).getWord());
-		assertEquals("SULU", solve.getWordsNeededSearch().get(5).getWord());
-		assertEquals("UHURA", solve.getWordsNeededSearch().get(6).getWord());
+		solve.buildPuzzle();
+		List<Words>words = solve.getWordsNeededSearch();
+		assertEquals("BONES", words.get(0).getWord());
+		assertEquals("KHAN", words.get(1).getWord());
+		assertEquals("KIRK", words.get(2).getWord());
+		assertEquals("SCOTTY",words.get(3).getWord());
+		assertEquals("SPOCK", words.get(4).getWord());
+		assertEquals("SULU", words.get(5).getWord());
+		assertEquals("UHURA", words.get(6).getWord());
 
 	}
 	@Test
 	public void whenSolvePuzzleFoundInputFileAndReadFirstRowForListOfWordsThenCheckNumberOfWords() {
-		solve.search();
-		assertEquals(7, solve.getWordsNeededSearch().size());
+		solve.buildPuzzle();
+		List<Words>words = solve.getWordsNeededSearch();		
+		assertEquals(7, words.size());
 
 	}
 	
 	@Test
 	public void whenSolvePuzzleReadAFileToBuildAGridItReturnsCorrectNumberOfRowsAndColumns() {
-		solve.search();
-		assertEquals(15, solve.getGridPuzzle().getNumColumn());
-		assertEquals(15, solve.getGridPuzzle().getNumRow());
+		solve.buildPuzzle();
+		Grid grid = solve.getGridPuzzle();
+		assertEquals(15, grid.getNumColumn());
+		assertEquals(15, grid.getNumRow());
 
 	}
 	@Test
 	public void whenSolvePuzzleReadAFileToBuildAGridItReturnsCorrect2DArrayRepresentationOfTheGrid() {
-		solve.search();
-		assertEquals("U", solve.getGridPuzzle().getGridSquare()[0][0]);
-		assertEquals("B", solve.getGridPuzzle().getGridSquare()[14][14]);
+		solve.buildPuzzle();
+		Grid grid = solve.getGridPuzzle();
+		assertEquals("U", grid.getGridSquare()[0][0]);
+		assertEquals("B", grid.getGridSquare()[14][14]);
 
 	}
 	

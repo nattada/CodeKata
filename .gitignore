@@ -7,4 +7,11 @@ WordSearch/.DS_Store
 .DS_Store
 .metadata/
 .recommenders/
-RemoteSystemsTempFiles
+RemoteSystemsTempFiles.gradle/
+.gradle/
+RemoteSystemsTempFiles/
+WordSearch/RemoteSystemsTempFiles/
+WordSearch/gradle/
+WordSearch/gradlew
+WordSearch/gradlew.bat
+WordSearch/.gradle/*
