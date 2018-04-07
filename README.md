@@ -14,5 +14,12 @@ gradle test
 
 #### 3.  To execute the application
 ```
-gradle run
+gradle run -PappArgs="['name of the file']"
+
+Test File Options:
+
+puzzleOne.csv
+puzzleTwo.csv
+humanBodyPuzzle.csv
+sportPuzzle.csv
 ```
