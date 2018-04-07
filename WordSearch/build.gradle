@@ -5,6 +5,11 @@ mainClassName = 'practice.codekata.wordsearch.WordSearch'
 repositories{
 	mavenCentral()
 }
+run {
+    if (project.hasProperty("appArgs")) {
+        args Eval.me(appArgs)
+    }
+}
 dependencies {
 	testCompile group: 'junit', name: 'junit', version: '4+'
 }
